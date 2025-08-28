@@ -76,10 +76,6 @@ Chúng tôi hoan nghênh mọi đóng góp để cải thiện ứng dụng! Đ�
 4. Push lên branch: `git push origin feature/<tên-tính-năng>`.
 5. Tạo Pull Request trên GitHub.
 
-## Giấy phép
-
-Dự án được phát hành dưới [Giấy phép MIT](LICENSE). Bạn có thể sử dụng, sao chép, chỉnh sửa và phân phối mã nguồn theo các điều khoản của giấy phép.
-
 ## Liên hệ
 
 Nếu bạn có câu hỏi hoặc đề xuất, vui lòng liên hệ qua [GitHub Issues](https://github.com/phanhongha/Calendar-WebApp/issues) hoặc email <your-email>.
