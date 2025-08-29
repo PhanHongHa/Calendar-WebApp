@@ -5,6 +5,412 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lịch Vạn Niên Việt Nam</title>
     <style>
+        :root {
+            /* Default theme colors */
+            --bg-gradient-start: #667eea;
+            --bg-gradient-end: #764ba2;
+            --container-bg: white;
+            --container-color: #2d3436;
+            --container-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            --container-border: transparent;
+            --header-gradient-start: #ff6b6b;
+            --header-gradient-end: #ee5a24;
+            --header-color: white;
+            --header-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            --lunar-info-gradient-start: #ffeaa7;
+            --lunar-info-gradient-end: #fdcb6e;
+            --lunar-info-color: #2d3436;
+            --day-header-gradient-start: #74b9ff;
+            --day-header-gradient-end: #0984e3;
+            --day-header-color: white;
+            --day-bg: white;
+            --day-color: #2d3436;
+            --day-other-month-bg: #f8f9fa;
+            --day-other-month-color: #999;
+            --day-hover-bg: #f8f9fa;
+            --day-hover-border: #74b9ff;
+            --today-gradient-start: #00b894;
+            --today-gradient-end: #00a085;
+            --today-color: white;
+            --holiday-gradient-start: #fd79a8;
+            --holiday-gradient-end: #e84393;
+            --holiday-color: white;
+            --lunar-date-color: #e17055;
+            --modal-bg: white;
+            --modal-color: #2d3436;
+            --modal-input-bg: white;
+            --modal-input-color: #2d3436;
+            --modal-input-border: #ddd;
+        }
+
+        /* Theme: Tết Nguyên Đán */
+        .theme-tet {
+            --bg-gradient-start: #dc143c;
+            --bg-gradient-end: #ffd700;
+            --container-bg: #1a1a1a;
+            --container-color: #ffd700;
+            --container-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+            --container-border: 2px solid #ffd700;
+            --header-gradient-start: #dc143c;
+            --header-gradient-end: #ffd700;
+            --header-color: white;
+            --header-shadow: 2px 2px 4px rgba(220, 20, 60, 0.5);
+            --lunar-info-gradient-start: #dc143c;
+            --lunar-info-gradient-end: #ffd700;
+            --lunar-info-color: white;
+            --day-header-gradient-start: #dc143c;
+            --day-header-gradient-end: #ffd700;
+            --day-header-color: white;
+            --day-bg: #2c2c2c;
+            --day-color: #ffd700;
+            --day-other-month-bg: #1a1a1a;
+            --day-other-month-color: #8b7355;
+            --today-gradient-start: #dc143c;
+            --today-gradient-end: #ffd700;
+            --today-color: white;
+            --modal-bg: #1a1a1a;
+            --modal-color: #ffd700;
+            --modal-input-bg: #2c2c2c;
+            --modal-input-color: #ffd700;
+            --modal-input-border: #ffd700;
+        }
+
+        /* Theme: Giỗ Tổ Hùng Vương */
+        .theme-hung-vuong {
+            --bg-gradient-start: #8b4513;
+            --bg-gradient-end: #daa520;
+            --container-bg: #1a1a1a;
+            --container-color: #daa520;
+            --container-shadow: 0 20px 40px rgba(218, 165, 32, 0.3);
+            --container-border: 2px solid #daa520;
+            --header-gradient-start: #8b4513;
+            --header-gradient-end: #daa520;
+            --header-color: white;
+            --lunar-info-gradient-start: #8b4513;
+            --lunar-info-gradient-end: #daa520;
+            --lunar-info-color: white;
+            --day-header-gradient-start: #8b4513;
+            --day-header-gradient-end: #daa520;
+            --day-header-color: white;
+            --day-bg: #2c2c2c;
+            --day-color: #daa520;
+            --day-other-month-bg: #1a1a1a;
+            --day-other-month-color: #8b7355;
+            --today-gradient-start: #8b4513;
+            --today-gradient-end: #daa520;
+            --today-color: white;
+            --modal-bg: #1a1a1a;
+            --modal-color: #daa520;
+            --modal-input-bg: #2c2c2c;
+            --modal-input-color: #daa520;
+            --modal-input-border: #daa520;
+        }
+
+        /* Theme: Giải phóng miền Nam */
+        .theme-liberation {
+            --bg-gradient-start: #da020e;
+            --bg-gradient-end: #ffd700;
+            --container-bg: #2c1810;
+            --container-color: #ffd700;
+            --container-shadow: 0 20px 40px rgba(218, 2, 14, 0.3);
+            --container-border: 2px solid #da020e;
+            --header-gradient-start: #da020e;
+            --header-gradient-end: #ffd700;
+            --header-color: white;
+            --lunar-info-gradient-start: #da020e;
+            --lunar-info-gradient-end: #ffd700;
+            --lunar-info-color: white;
+            --day-header-gradient-start: #da020e;
+            --day-header-gradient-end: #ffd700;
+            --day-header-color: white;
+            --day-bg: #2c2c2c;
+            --day-color: #ffd700;
+            --day-other-month-bg: #1a1a1a;
+            --day-other-month-color: #8b7355;
+            --today-gradient-start: #da020e;
+            --today-gradient-end: #ffd700;
+            --today-color: white;
+            --modal-bg: #2c1810;
+            --modal-color: #ffd700;
+            --modal-input-bg: #2c2c2c;
+            --modal-input-color: #ffd700;
+            --modal-input-border: #da020e;
+        }
+
+        /* Theme: Quốc tế Lao động */
+        .theme-labor {
+            --bg-gradient-start: #ff4757;
+            --bg-gradient-end: #ffa502;
+            --container-bg: #2d3436;
+            --container-color: #ffeaa7;
+            --container-shadow: 0 20px 40px rgba(255, 71, 87, 0.2);
+            --header-gradient-start: #ff4757;
+            --header-gradient-end: #ffa502;
+            --header-color: white;
+            --lunar-info-gradient-start: #ff4757;
+            --lunar-info-gradient-end: #ffa502;
+            --lunar-info-color: white;
+            --day-header-gradient-start: #ff4757;
+            --day-header-gradient-end: #ffa502;
+            --day-header-color: white;
+            --day-bg: #2c2c2c;
+            --day-color: #ffeaa7;
+            --day-other-month-bg: #1a1a1a;
+            --day-other-month-color: #8b8b55;
+            --today-gradient-start: #ff4757;
+            --today-gradient-end: #ffa502;
+            --today-color: white;
+            --modal-bg: #2d3436;
+            --modal-color: #ffeaa7;
+            --modal-input-bg: #2c2c2c;
+            --modal-input-color: #ffeaa7;
+            --modal-input-border: #ff4757;
+        }
+
+        /* Theme: Quốc khánh */
+        .theme-national-day {
+            --bg-gradient-start: #da020e;
+            --bg-gradient-end: #ffd700;
+            --container-bg: #2c1810;
+            --container-color: #ffd700;
+            --container-shadow: 0 20px 40px rgba(218, 2, 14, 0.3);
+            --container-border: 2px solid #da020e;
+            --header-gradient-start: #da020e;
+            --header-gradient-end: #ffd700;
+            --header-color: white;
+            --lunar-info-gradient-start: #da020e;
+            --lunar-info-gradient-end: #ffd700;
+            --lunar-info-color: white;
+            --day-header-gradient-start: #da020e;
+            --day-header-gradient-end: #ffd700;
+            --day-header-color: white;
+            --day-bg: #2c2c2c;
+            --day-color: #ffd700;
+            --day-other-month-bg: #1a1a1a;
+            --day-other-month-color: #8b7355;
+            --today-gradient-start: #da020e;
+            --today-gradient-end: #ffd700;
+            --today-color: white;
+            --modal-bg: #2c1810;
+            --modal-color: #ffd700;
+            --modal-input-bg: #2c2c2c;
+            --modal-input-color: #ffd700;
+            --modal-input-border: #da020e;
+        }
+
+        /* Theme: Ngày Nhà giáo */
+        .theme-teacher {
+            --bg-gradient-start: #3742fa;
+            --bg-gradient-end: #70a1ff;
+            --container-bg: #2d3436;
+            --container-color: #ddd;
+            --container-shadow: 0 20px 40px rgba(55, 66, 250, 0.2);
+            --header-gradient-start: #3742fa;
+            --header-gradient-end: #70a1ff;
+            --header-color: white;
+            --lunar-info-gradient-start: #3742fa;
+            --lunar-info-gradient-end: #70a1ff;
+            --lunar-info-color: white;
+            --day-header-gradient-start: #3742fa;
+            --day-header-gradient-end: #70a1ff;
+            --day-header-color: white;
+            --day-bg: #2c2c2c;
+            --day-color: #ddd;
+            --day-other-month-bg: #1a1a1a;
+            --day-other-month-color: #666;
+            --today-gradient-start: #3742fa;
+            --today-gradient-end: #70a1ff;
+            --today-color: white;
+            --modal-bg: #2d3436;
+            --modal-color: #ddd;
+            --modal-input-bg: #2c2c2c;
+            --modal-input-color: #ddd;
+            --modal-input-border: #3742fa;
+        }
+
+        /* Theme: Ngày Phụ nữ */
+        .theme-women {
+            --bg-gradient-start: #ff6b9d;
+            --bg-gradient-end: #c44569;
+            --container-bg: #2d3436;
+            --container-color: #ff6b9d;
+            --container-shadow: 0 20px 40px rgba(255, 107, 157, 0.2);
+            --header-gradient-start: #ff6b9d;
+            --header-gradient-end: #c44569;
+            --header-color: white;
+            --lunar-info-gradient-start: #ff6b9d;
+            --lunar-info-gradient-end: #c44569;
+            --lunar-info-color: white;
+            --day-header-gradient-start: #ff6b9d;
+            --day-header-gradient-end: #c44569;
+            --day-header-color: white;
+            --day-bg: #2c2c2c;
+            --day-color: #ff6b9d;
+            --day-other-month-bg: #1a1a1a;
+            --day-other-month-color: #8b4f6d;
+            --today-gradient-start: #ff6b9d;
+            --today-gradient-end: #c44569;
+            --today-color: white;
+            --modal-bg: #2d3436;
+            --modal-color: #ff6b9d;
+            --modal-input-bg: #2c2c2c;
+            --modal-input-color: #ff6b9d;
+            --modal-input-border: #ff6b9d;
+        }
+
+        /* Theme: Trung Thu */
+        .theme-mid-autumn {
+            --bg-gradient-start: #ffa502;
+            --bg-gradient-end: #ff6348;
+            --container-bg: #2c1810;
+            --container-color: #ffa502;
+            --container-shadow: 0 20px 40px rgba(255, 165, 2, 0.2);
+            --header-gradient-start: #ffa502;
+            --header-gradient-end: #ff6348;
+            --header-color: white;
+            --lunar-info-gradient-start: #ffa502;
+            --lunar-info-gradient-end: #ff6348;
+            --lunar-info-color: white;
+            --day-header-gradient-start: #ffa502;
+            --day-header-gradient-end: #ff6348;
+            --day-header-color: white;
+            --day-bg: #2c2c2c;
+            --day-color: #ffa502;
+            --day-other-month-bg: #1a1a1a;
+            --day-other-month-color: #8b6a01;
+            --today-gradient-start: #ffa502;
+            --today-gradient-end: #ff6348;
+            --today-color: white;
+            --modal-bg: #2c1810;
+            --modal-color: #ffa502;
+            --modal-input-bg: #2c2c2c;
+            --modal-input-color: #ffa502;
+            --modal-input-border: #ffa502;
+        }
+
+        /* Theme: Noel */
+        .theme-christmas {
+            --bg-gradient-start: #228b22;
+            --bg-gradient-end: #dc143c;
+            --container-bg: #1a1a1a;
+            --container-color: #ffd700;
+            --container-shadow: 0 20px 40px rgba(34, 139, 34, 0.3);
+            --container-border: 2px solid #ffd700;
+            --header-gradient-start: #228b22;
+            --header-gradient-end: #dc143c;
+            --header-color: white;
+            --lunar-info-gradient-start: #228b22;
+            --lunar-info-gradient-end: #dc143c;
+            --lunar-info-color: white;
+            --day-header-gradient-start: #228b22;
+            --day-header-gradient-end: #dc143c;
+            --day-header-color: white;
+            --day-bg: #2c2c2c;
+            --day-color: #ffd700;
+            --day-other-month-bg: #1a1a1a;
+            --day-other-month-color: #8b7355;
+            --today-gradient-start: #228b22;
+            --today-gradient-end: #dc143c;
+            --today-color: white;
+            --modal-bg: #1a1a1a;
+            --modal-color: #ffd700;
+            --modal-input-bg: #2c2c2c;
+            --modal-input-color: #ffd700;
+            --modal-input-border: #228b22;
+        }
+
+        /* Theme: Halloween */
+        .theme-halloween {
+            --bg-gradient-start: #ff6b35;
+            --bg-gradient-end: #2c1810;
+            --container-bg: #1a1a1a;
+            --container-color: #ff6b35;
+            --container-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+            --container-border: 2px solid #ff6b35;
+            --header-gradient-start: #ff6b35;
+            --header-gradient-end: #2c1810;
+            --header-color: white;
+            --lunar-info-gradient-start: #ff6b35;
+            --lunar-info-gradient-end: #2c1810;
+            --lunar-info-color: white;
+            --day-header-gradient-start: #ff6b35;
+            --day-header-gradient-end: #2c1810;
+            --day-header-color: white;
+            --day-bg: #2c2c2c;
+            --day-color: #ff6b35;
+            --day-other-month-bg: #1a1a1a;
+            --day-other-month-color: #8b4513;
+            --today-gradient-start: #ff6b35;
+            --today-gradient-end: #2c1810;
+            --today-color: white;
+            --modal-bg: #1a1a1a;
+            --modal-color: #ff6b35;
+            --modal-input-bg: #2c2c2c;
+            --modal-input-color: #ff6b35;
+            --modal-input-border: #ff6b35;
+        }
+
+        /* Theme: Valentine */
+        .theme-valentine {
+            --bg-gradient-start: #ff6b9d;
+            --bg-gradient-end: #ff1744;
+            --container-bg: #2d1a2d;
+            --container-color: #ff6b9d;
+            --container-shadow: 0 20px 40px rgba(255, 107, 157, 0.3);
+            --header-gradient-start: #ff6b9d;
+            --header-gradient-end: #ff1744;
+            --header-color: white;
+            --lunar-info-gradient-start: #ff6b9d;
+            --lunar-info-gradient-end: #ff1744;
+            --lunar-info-color: white;
+            --day-header-gradient-start: #ff6b9d;
+            --day-header-gradient-end: #ff1744;
+            --day-header-color: white;
+            --day-bg: #2c2c2c;
+            --day-color: #ff6b9d;
+            --day-other-month-bg: #1a1a1a;
+            --day-other-month-color: #8b4f6d;
+            --today-gradient-start: #ff6b9d;
+            --today-gradient-end: #ff1744;
+            --today-color: white;
+            --modal-bg: #2d1a2d;
+            --modal-color: #ff6b9d;
+            --modal-input-bg: #2c2c2c;
+            --modal-input-color: #ff6b9d;
+            --modal-input-border: #ff6b9d;
+        }
+
+        /* Theme: New Year */
+        .theme-new-year {
+            --bg-gradient-start: #ffd700;
+            --bg-gradient-end: #4169e1;
+            --container-bg: #1a1a1a;
+            --container-color: #ffd700;
+            --container-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+            --container-border: 2px solid #ffd700;
+            --header-gradient-start: #ffd700;
+            --header-gradient-end: #4169e1;
+            --header-color: white;
+            --lunar-info-gradient-start: #ffd700;
+            --lunar-info-gradient-end: #4169e1;
+            --lunar-info-color: white;
+            --day-header-gradient-start: #ffd700;
+            --day-header-gradient-end: #4169e1;
+            --day-header-color: white;
+            --day-bg: #2c2c2c;
+            --day-color: #ffd700;
+            --day-other-month-bg: #1a1a1a;
+            --day-other-month-color: #8b7355;
+            --today-gradient-start: #ffd700;
+            --today-gradient-end: #4169e1;
+            --today-color: white;
+            --modal-bg: #1a1a1a;
+            --modal-color: #ffd700;
+            --modal-input-bg: #2c2c2c;
+            --modal-input-color: #ffd700;
+            --modal-input-border: #ffd700;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,322 +419,36 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             min-height: 100vh;
             padding: 20px;
             transition: all 0.3s ease;
         }
 
-        /* Theme styles */
-        body.theme-default {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        body.theme-sakura {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-        }
-
-        body.theme-ocean {
-            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
-        }
-
-        body.theme-forest {
-            background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
-        }
-
-        body.theme-sunset {
-            background: linear-gradient(135deg, #ee9ca7 0%, #ffdde1 100%);
-        }
-
-        body.theme-royal {
-            background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%);
-        }
-
-        body.theme-autumn {
-            background: linear-gradient(135deg, #d66d75 0%, #e29587 100%);
-        }
-
-        body.theme-dark {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        }
-
-        body.theme-light {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        }
-
-        body.theme-midnight {
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
-        }
-
-        body.theme-vampire {
-            background: linear-gradient(135deg, #2d1b69 0%, #11001c 100%);
-        }
-
-        body.theme-matrix {
-            background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
-        }
-
-        /* Vietnamese Holiday Themes */
-        body.theme-tet {
-            background: linear-gradient(135deg, #dc143c 0%, #ffd700 100%);
-        }
-
-        body.theme-liberation {
-            background: linear-gradient(135deg, #da020e 0%, #ffd700 100%);
-        }
-
-        body.theme-labor {
-            background: linear-gradient(135deg, #ff4757 0%, #ffa502 100%);
-        }
-
-        body.theme-independence {
-            background: linear-gradient(135deg, #da020e 0%, #ffd700 100%);
-        }
-
-        body.theme-teacher {
-            background: linear-gradient(135deg, #3742fa 0%, #70a1ff 100%);
-        }
-
-        body.theme-women {
-            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
-        }
-
-        body.theme-military {
-            background: linear-gradient(135deg, #2f3640 0%, #57606f 100%);
-        }
-
-        body.theme-mid-autumn {
-            background: linear-gradient(135deg, #ffa502 0%, #ff6348 100%);
-        }
-
-        body.theme-vu-lan {
-            background: linear-gradient(135deg, #a55eea 0%, #26de81 100%);
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
+            background: var(--container-bg);
+            color: var(--container-color);
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: var(--container-shadow);
+            border: var(--container-border);
             overflow: hidden;
             transition: all 0.3s ease;
         }
 
-        /* Theme container styles */
-        body.theme-dark .container {
-            background: #2d3436;
-            color: #ddd;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        body.theme-light .container {
-            background: white;
-            color: #2d3436;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-        }
-
-        body.theme-royal .container {
-            background: #1a1a1a;
-            color: #d4af37;
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
-            border: 2px solid #d4af37;
-        }
-
-        body.theme-midnight .container {
-            background: #1a1a1a;
-            color: #cccccc;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        body.theme-vampire .container {
-            background: #1a0d1a;
-            color: #cc6666;
-            box-shadow: 0 20px 40px rgba(139, 0, 0, 0.3);
-        }
-
-        body.theme-matrix .container {
-            background: #0a0a0a;
-            color: #00ff00;
-            box-shadow: 0 20px 40px rgba(0, 255, 0, 0.1);
-        }
-
-        /* Holiday Theme Container Styles */
-        body.theme-tet .container {
-            background: #1a1a1a;
-            color: #ffd700;
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
-            border: 2px solid #ffd700;
-        }
-
-        body.theme-liberation .container {
-            background: #2c1810;
-            color: #ffd700;
-            box-shadow: 0 20px 40px rgba(218, 2, 14, 0.3);
-            border: 2px solid #da020e;
-        }
-
-        body.theme-labor .container {
-            background: #2d3436;
-            color: #ffeaa7;
-            box-shadow: 0 20px 40px rgba(255, 71, 87, 0.2);
-        }
-
-        body.theme-independence .container {
-            background: #2c1810;
-            color: #ffd700;
-            box-shadow: 0 20px 40px rgba(218, 2, 14, 0.3);
-            border: 2px solid #da020e;
-        }
-
-        body.theme-teacher .container {
-            background: #2d3436;
-            color: #ddd;
-            box-shadow: 0 20px 40px rgba(55, 66, 250, 0.2);
-        }
-
-        body.theme-women .container {
-            background: #2d3436;
-            color: #ff6b9d;
-            box-shadow: 0 20px 40px rgba(255, 107, 157, 0.2);
-        }
-
-        body.theme-military .container {
-            background: #1a1a1a;
-            color: #ddd;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        body.theme-mid-autumn .container {
-            background: #2c1810;
-            color: #ffa502;
-            box-shadow: 0 20px 40px rgba(255, 165, 2, 0.2);
-        }
-
-        body.theme-vu-lan .container {
-            background: #2d3436;
-            color: #a55eea;
-            box-shadow: 0 20px 40px rgba(165, 94, 234, 0.2);
-        }
-
         .header {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
+            background: linear-gradient(135deg, var(--header-gradient-start), var(--header-gradient-end));
+            color: var(--header-color);
             padding: 30px;
             text-align: center;
             transition: all 0.3s ease;
         }
 
-        /* Theme header styles */
-        body.theme-default .header {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-        }
-
-        body.theme-sakura .header {
-            background: linear-gradient(135deg, #ff9a9e, #fecfef);
-        }
-
-        body.theme-ocean .header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-        }
-
-        body.theme-forest .header {
-            background: linear-gradient(135deg, #56ab2f, #a8e6cf);
-        }
-
-        body.theme-sunset .header {
-            background: linear-gradient(135deg, #ee9ca7, #ffdde1);
-        }
-
-        body.theme-royal .header {
-            background: linear-gradient(135deg, #d4af37, #ffd700);
-            color: #2c1810;
-            text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.3);
-        }
-
-        body.theme-autumn .header {
-            background: linear-gradient(135deg, #d66d75, #e29587);
-        }
-
-        body.theme-dark .header {
-            background: linear-gradient(135deg, #0f3460, #16213e);
-        }
-
-        body.theme-light .header {
-            background: linear-gradient(135deg, #495057, #6c757d);
-        }
-
-        body.theme-midnight .header {
-            background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
-        }
-
-        body.theme-vampire .header {
-            background: linear-gradient(135deg, #8b0000, #4b0000);
-        }
-
-        body.theme-matrix .header {
-            background: linear-gradient(135deg, #003d00, #001100);
-        }
-
-        /* Holiday Theme Header Styles */
-        body.theme-tet .header {
-            background: linear-gradient(135deg, #dc143c, #ffd700);
-            color: white;
-            text-shadow: 2px 2px 4px rgba(220, 20, 60, 0.5);
-        }
-
-        body.theme-liberation .header {
-            background: linear-gradient(135deg, #da020e, #ffd700);
-            color: white;
-            text-shadow: 2px 2px 4px rgba(218, 2, 14, 0.5);
-        }
-
-        body.theme-labor .header {
-            background: linear-gradient(135deg, #ff4757, #ffa502);
-            color: white;
-            text-shadow: 2px 2px 4px rgba(255, 71, 87, 0.5);
-        }
-
-        body.theme-independence .header {
-            background: linear-gradient(135deg, #da020e, #ffd700);
-            color: white;
-            text-shadow: 2px 2px 4px rgba(218, 2, 14, 0.5);
-        }
-
-        body.theme-teacher .header {
-            background: linear-gradient(135deg, #3742fa, #70a1ff);
-            color: white;
-            text-shadow: 2px 2px 4px rgba(55, 66, 250, 0.5);
-        }
-
-        body.theme-women .header {
-            background: linear-gradient(135deg, #ff6b9d, #c44569);
-            color: white;
-            text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.5);
-        }
-
-        body.theme-military .header {
-            background: linear-gradient(135deg, #2f3640, #57606f);
-            color: white;
-            text-shadow: 2px 2px 4px rgba(47, 54, 64, 0.5);
-        }
-
-        body.theme-mid-autumn .header {
-            background: linear-gradient(135deg, #ffa502, #ff6348);
-            color: white;
-            text-shadow: 2px 2px 4px rgba(255, 165, 2, 0.5);
-        }
-
-        body.theme-vu-lan .header {
-            background: linear-gradient(135deg, #a55eea, #26de81);
-            color: white;
-            text-shadow: 2px 2px 4px rgba(165, 94, 234, 0.5);
-        }
-
         .header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: var(--header-shadow);
         }
 
         .controls {
@@ -374,6 +494,12 @@
             transform: translateY(-2px);
         }
 
+        button:focus,
+        select:focus {
+            outline: 3px solid #74b9ff;
+            outline-offset: 2px;
+        }
+
         .calendar-container {
             padding: 30px;
         }
@@ -384,120 +510,13 @@
         }
 
         .lunar-info {
-            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            background: linear-gradient(135deg, var(--lunar-info-gradient-start), var(--lunar-info-gradient-end));
+            color: var(--lunar-info-color);
             padding: 15px;
             border-radius: 15px;
             margin: 20px 0;
             font-weight: bold;
-            color: #2d3436;
             transition: all 0.3s ease;
-        }
-
-        /* Theme lunar-info styles */
-        body.theme-default .lunar-info {
-            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
-            color: #2d3436;
-        }
-
-        body.theme-sakura .lunar-info {
-            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
-            color: #2d3436;
-        }
-
-        body.theme-ocean .lunar-info {
-            background: linear-gradient(135deg, #81ecec, #74b9ff);
-            color: #2d3436;
-        }
-
-        body.theme-forest .lunar-info {
-            background: linear-gradient(135deg, #55efc4, #81ecec);
-            color: #2d3436;
-        }
-
-        body.theme-sunset .lunar-info {
-            background: linear-gradient(135deg, #fd79a8, #fdcb6e);
-            color: white;
-        }
-
-        body.theme-royal .lunar-info {
-            background: linear-gradient(135deg, #d4af37, #ffd700);
-            color: #2c1810;
-        }
-
-        body.theme-autumn .lunar-info {
-            background: linear-gradient(135deg, #fdcb6e, #fd79a8);
-            color: #2d3436;
-        }
-
-        body.theme-dark .lunar-info {
-            background: linear-gradient(135deg, #636e72, #2d3436);
-            color: #ddd;
-        }
-
-        body.theme-light .lunar-info {
-            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
-            color: #2d3436;
-        }
-
-        body.theme-midnight .lunar-info {
-            background: linear-gradient(135deg, #4a4a4a, #2c2c2c);
-            color: #cccccc;
-        }
-
-        body.theme-vampire .lunar-info {
-            background: linear-gradient(135deg, #660000, #330000);
-            color: #cc6666;
-        }
-
-        body.theme-matrix .lunar-info {
-            background: linear-gradient(135deg, #003300, #001100);
-            color: #00ff00;
-        }
-
-        /* Holiday Theme Lunar Info Styles */
-        body.theme-tet .lunar-info {
-            background: linear-gradient(135deg, #dc143c, #ffd700);
-            color: white;
-        }
-
-        body.theme-liberation .lunar-info {
-            background: linear-gradient(135deg, #da020e, #ffd700);
-            color: white;
-        }
-
-        body.theme-labor .lunar-info {
-            background: linear-gradient(135deg, #ff4757, #ffa502);
-            color: white;
-        }
-
-        body.theme-independence .lunar-info {
-            background: linear-gradient(135deg, #da020e, #ffd700);
-            color: white;
-        }
-
-        body.theme-teacher .lunar-info {
-            background: linear-gradient(135deg, #3742fa, #70a1ff);
-            color: white;
-        }
-
-        body.theme-women .lunar-info {
-            background: linear-gradient(135deg, #ff6b9d, #c44569);
-            color: white;
-        }
-
-        body.theme-military .lunar-info {
-            background: linear-gradient(135deg, #2f3640, #57606f);
-            color: white;
-        }
-
-        body.theme-mid-autumn .lunar-info {
-            background: linear-gradient(135deg, #ffa502, #ff6348);
-            color: white;
-        }
-
-        body.theme-vu-lan .lunar-info {
-            background: linear-gradient(135deg, #a55eea, #26de81);
-            color: white;
         }
 
         .calendar {
@@ -511,8 +530,8 @@
         }
 
         .day-header {
-            background: linear-gradient(135deg, #74b9ff, #0984e3);
-            color: white;
+            background: linear-gradient(135deg, var(--day-header-gradient-start), var(--day-header-gradient-end));
+            color: var(--day-header-color);
             padding: 15px 5px;
             text-align: center;
             font-weight: bold;
@@ -520,104 +539,9 @@
             transition: all 0.3s ease;
         }
 
-        /* Theme day-header styles */
-        body.theme-default .day-header {
-            background: linear-gradient(135deg, #74b9ff, #0984e3);
-        }
-
-        body.theme-sakura .day-header {
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-        }
-
-        body.theme-ocean .day-header {
-            background: linear-gradient(135deg, #2193b0, #6dd5ed);
-        }
-
-        body.theme-forest .day-header {
-            background: linear-gradient(135deg, #11998e, #38ef7d);
-        }
-
-        body.theme-sunset .day-header {
-            background: linear-gradient(135deg, #ff8a80, #ff5722);
-        }
-
-        body.theme-royal .day-header {
-            background: linear-gradient(135deg, #d4af37, #ffd700);
-            color: #2c1810;
-        }
-
-        body.theme-autumn .day-header {
-            background: linear-gradient(135deg, #d66d75, #e29587);
-        }
-
-        body.theme-dark .day-header {
-            background: linear-gradient(135deg, #636e72, #2d3436);
-        }
-
-        body.theme-light .day-header {
-            background: linear-gradient(135deg, #74b9ff, #0984e3);
-        }
-
-        body.theme-midnight .day-header {
-            background: linear-gradient(135deg, #4a4a4a, #2c2c2c);
-        }
-
-        body.theme-vampire .day-header {
-            background: linear-gradient(135deg, #8b0000, #660000);
-        }
-
-        body.theme-matrix .day-header {
-            background: linear-gradient(135deg, #003d00, #002200);
-        }
-
-        /* Holiday Theme Day Header Styles */
-        body.theme-tet .day-header {
-            background: linear-gradient(135deg, #dc143c, #ffd700);
-            color: white;
-        }
-
-        body.theme-liberation .day-header {
-            background: linear-gradient(135deg, #da020e, #ffd700);
-            color: white;
-        }
-
-        body.theme-labor .day-header {
-            background: linear-gradient(135deg, #ff4757, #ffa502);
-            color: white;
-        }
-
-        body.theme-independence .day-header {
-            background: linear-gradient(135deg, #da020e, #ffd700);
-            color: white;
-        }
-
-        body.theme-teacher .day-header {
-            background: linear-gradient(135deg, #3742fa, #70a1ff);
-            color: white;
-        }
-
-        body.theme-women .day-header {
-            background: linear-gradient(135deg, #ff6b9d, #c44569);
-            color: white;
-        }
-
-        body.theme-military .day-header {
-            background: linear-gradient(135deg, #2f3640, #57606f);
-            color: white;
-        }
-
-        body.theme-mid-autumn .day-header {
-            background: linear-gradient(135deg, #ffa502, #ff6348);
-            color: white;
-        }
-
-        body.theme-vu-lan .day-header {
-            background: linear-gradient(135deg, #a55eea, #26de81);
-            color: white;
-        }
-
         .day {
-            background: white;
+            background: var(--day-bg);
+            color: var(--day-color);
             min-height: 120px;
             padding: 8px;
             position: relative;
@@ -626,339 +550,34 @@
             border: 2px solid transparent;
         }
 
-        /* Theme day styles */
-        body.theme-dark .day {
-            background: #636e72;
-            color: #ddd;
-        }
-
-        body.theme-dark .day.other-month {
-            background: #2d3436;
-            color: #636e72;
-        }
-
-        body.theme-light .day {
-            background: white;
-            color: #2d3436;
-        }
-
-        body.theme-light .day.other-month {
-            background: #f8f9fa;
-            color: #999;
-        }
-
-        body.theme-royal .day {
-            background: #2c2c2c;
-            color: #d4af37;
-        }
-
-        body.theme-royal .day.other-month {
-            background: #1a1a1a;
-            color: #8b7355;
-        }
-
-        body.theme-midnight .day {
-            background: #2c2c2c;
-            color: #cccccc;
-        }
-
-        body.theme-midnight .day.other-month {
-            background: #1a1a1a;
-            color: #666666;
-        }
-
-        body.theme-vampire .day {
-            background: #2d1a2d;
-            color: #cc6666;
-        }
-
-        body.theme-vampire .day.other-month {
-            background: #1a0d1a;
-            color: #663333;
-        }
-
-        body.theme-matrix .day {
-            background: #1a1a1a;
-            color: #00ff00;
-        }
-
-        body.theme-matrix .day.other-month {
-            background: #0a0a0a;
-            color: #006600;
-        }
-
-        /* Holiday Theme Day Styles */
-        body.theme-tet .day {
-            background: #2c2c2c;
-            color: #ffd700;
-        }
-
-        body.theme-tet .day.other-month {
-            background: #1a1a1a;
-            color: #8b7355;
-        }
-
-        body.theme-liberation .day {
-            background: #2c2c2c;
-            color: #ffd700;
-        }
-
-        body.theme-liberation .day.other-month {
-            background: #1a1a1a;
-            color: #8b7355;
-        }
-
-        body.theme-labor .day {
-            background: #2c2c2c;
-            color: #ffeaa7;
-        }
-
-        body.theme-labor .day.other-month {
-            background: #1a1a1a;
-            color: #8b8b55;
-        }
-
-        body.theme-independence .day {
-            background: #2c2c2c;
-            color: #ffd700;
-        }
-
-        body.theme-independence .day.other-month {
-            background: #1a1a1a;
-            color: #8b7355;
-        }
-
-        body.theme-teacher .day {
-            background: #2c2c2c;
-            color: #ddd;
-        }
-
-        body.theme-teacher .day.other-month {
-            background: #1a1a1a;
-            color: #666;
-        }
-
-        body.theme-women .day {
-            background: #2c2c2c;
-            color: #ff6b9d;
-        }
-
-        body.theme-women .day.other-month {
-            background: #1a1a1a;
-            color: #8b4f6d;
-        }
-
-        body.theme-military .day {
-            background: #2c2c2c;
-            color: #ddd;
-        }
-
-        body.theme-military .day.other-month {
-            background: #1a1a1a;
-            color: #666;
-        }
-
-        body.theme-mid-autumn .day {
-            background: #2c2c2c;
-            color: #ffa502;
-        }
-
-        body.theme-mid-autumn .day.other-month {
-            background: #1a1a1a;
-            color: #8b6a01;
-        }
-
-        body.theme-vu-lan .day {
-            background: #2c2c2c;
-            color: #a55eea;
-        }
-
-        body.theme-vu-lan .day.other-month {
-            background: #1a1a1a;
-            color: #6c3d9a;
-        }
-
         .day:hover {
-            background: #f8f9fa;
+            background: var(--day-hover-bg);
             transform: scale(1.02);
-            border-color: #74b9ff;
+            border-color: var(--day-hover-border);
             z-index: 10;
         }
 
+        .day:focus {
+            outline: 3px solid #74b9ff;
+            outline-offset: 2px;
+        }
+
         .day.other-month {
-            background: #f8f9fa;
-            color: #999;
+            background: var(--day-other-month-bg);
+            color: var(--day-other-month-color);
         }
 
         .day.today {
-            background: linear-gradient(135deg, #00b894, #00a085);
-            color: white;
+            background: linear-gradient(135deg, var(--today-gradient-start), var(--today-gradient-end));
+            color: var(--today-color);
             font-weight: bold;
             transition: all 0.3s ease;
         }
 
-        /* Theme today styles */
-        body.theme-default .day.today {
-            background: linear-gradient(135deg, #00b894, #00a085);
-        }
-
-        body.theme-sakura .day.today {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-        }
-
-        body.theme-ocean .day.today {
-            background: linear-gradient(135deg, #3742fa, #2f3542);
-        }
-
-        body.theme-forest .day.today {
-            background: linear-gradient(135deg, #2ed573, #7bed9f);
-        }
-
-        body.theme-sunset .day.today {
-            background: linear-gradient(135deg, #ff6348, #ff4757);
-        }
-
-        body.theme-royal .day.today {
-            background: linear-gradient(135deg, #ffd700, #ffed4a);
-            color: #2c1810;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-
-        body.theme-autumn .day.today {
-            background: linear-gradient(135deg, #c44569, #f8b500);
-        }
-
-        body.theme-dark .day.today {
-            background: linear-gradient(135deg, #74b9ff, #0984e3);
-        }
-
-        body.theme-light .day.today {
-            background: linear-gradient(135deg, #00b894, #00a085);
-        }
-
-        body.theme-midnight .day.today {
-            background: linear-gradient(135deg, #666666, #4a4a4a);
-        }
-
-        body.theme-vampire .day.today {
-            background: linear-gradient(135deg, #cc0000, #880000);
-        }
-
-        body.theme-matrix .day.today {
-            background: linear-gradient(135deg, #00ff00, #00cc00);
-            color: #000000;
-        }
-
-        /* Holiday Theme Today Styles */
-        body.theme-tet .day.today {
-            background: linear-gradient(135deg, #dc143c, #ffd700);
-            color: white;
-            box-shadow: 0 0 20px rgba(220, 20, 60, 0.5);
-        }
-
-        body.theme-liberation .day.today {
-            background: linear-gradient(135deg, #da020e, #ffd700);
-            color: white;
-            box-shadow: 0 0 20px rgba(218, 2, 14, 0.5);
-        }
-
-        body.theme-labor .day.today {
-            background: linear-gradient(135deg, #ff4757, #ffa502);
-            color: white;
-            box-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
-        }
-
-        body.theme-independence .day.today {
-            background: linear-gradient(135deg, #da020e, #ffd700);
-            color: white;
-            box-shadow: 0 0 20px rgba(218, 2, 14, 0.5);
-        }
-
-        body.theme-teacher .day.today {
-            background: linear-gradient(135deg, #3742fa, #70a1ff);
-            color: white;
-            box-shadow: 0 0 20px rgba(55, 66, 250, 0.5);
-        }
-
-        body.theme-women .day.today {
-            background: linear-gradient(135deg, #ff6b9d, #c44569);
-            color: white;
-            box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
-        }
-
-        body.theme-military .day.today {
-            background: linear-gradient(135deg, #2f3640, #57606f);
-            color: white;
-            box-shadow: 0 0 20px rgba(47, 54, 64, 0.5);
-        }
-
-        body.theme-mid-autumn .day.today {
-            background: linear-gradient(135deg, #ffa502, #ff6348);
-            color: white;
-            box-shadow: 0 0 20px rgba(255, 165, 2, 0.5);
-        }
-
-        body.theme-vu-lan .day.today {
-            background: linear-gradient(135deg, #a55eea, #26de81);
-            color: white;
-            box-shadow: 0 0 20px rgba(165, 94, 234, 0.5);
-        }
-
         .day.holiday {
-            background: linear-gradient(135deg, #fd79a8, #e84393);
-            color: white;
+            background: linear-gradient(135deg, var(--holiday-gradient-start), var(--holiday-gradient-end));
+            color: var(--holiday-color);
             transition: all 0.3s ease;
-        }
-
-        /* Theme holiday styles */
-        body.theme-default .day.holiday {
-            background: linear-gradient(135deg, #fd79a8, #e84393);
-        }
-
-        body.theme-sakura .day.holiday {
-            background: linear-gradient(135deg, #ff7675, #fab1a0);
-        }
-
-        body.theme-ocean .day.holiday {
-            background: linear-gradient(135deg, #0984e3, #74b9ff);
-        }
-
-        body.theme-forest .day.holiday {
-            background: linear-gradient(135deg, #00b894, #55a3ff);
-        }
-
-        body.theme-sunset .day.holiday {
-            background: linear-gradient(135deg, #fd79a8, #fdcb6e);
-        }
-
-        body.theme-royal .day.holiday {
-            background: linear-gradient(135deg, #ffb347, #ff8c00);
-            color: #2c1810;
-        }
-
-        body.theme-autumn .day.holiday {
-            background: linear-gradient(135deg, #ff6348, #ffb142);
-        }
-
-        body.theme-dark .day.holiday {
-            background: linear-gradient(135deg, #a55eea, #8360c3);
-        }
-
-        body.theme-light .day.holiday {
-            background: linear-gradient(135deg, #fd79a8, #e84393);
-        }
-
-        body.theme-midnight .day.holiday {
-            background: linear-gradient(135deg, #555555, #777777);
-        }
-
-        body.theme-vampire .day.holiday {
-            background: linear-gradient(135deg, #990000, #cc3333);
-        }
-
-        body.theme-matrix .day.holiday {
-            background: linear-gradient(135deg, #00cc00, #009900);
-            color: #000000;
         }
 
         .day-number {
@@ -969,7 +588,7 @@
 
         .lunar-date {
             font-size: 11px;
-            color: #e17055;
+            color: var(--lunar-date-color);
             font-weight: bold;
             margin-bottom: 3px;
         }
@@ -1012,7 +631,8 @@
         }
 
         .modal-content {
-            background-color: white;
+            background-color: var(--modal-bg);
+            color: var(--modal-color);
             margin: 15% auto;
             padding: 30px;
             border-radius: 20px;
@@ -1021,38 +641,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             animation: modalSlideIn 0.3s ease;
             transition: all 0.3s ease;
-        }
-
-        /* Theme modal styles */
-        body.theme-dark .modal-content {
-            background-color: #2d3436;
-            color: #ddd;
-        }
-
-        body.theme-light .modal-content {
-            background-color: white;
-            color: #2d3436;
-        }
-
-        body.theme-royal .modal-content {
-            background-color: #1a1a1a;
-            color: #d4af37;
-            border: 2px solid #d4af37;
-        }
-
-        body.theme-midnight .modal-content {
-            background-color: #1a1a1a;
-            color: #cccccc;
-        }
-
-        body.theme-vampire .modal-content {
-            background-color: #1a0d1a;
-            color: #cc6666;
-        }
-
-        body.theme-matrix .modal-content {
-            background-color: #0a0a0a;
-            color: #00ff00;
         }
 
         @keyframes modalSlideIn {
@@ -1069,12 +657,14 @@
             transition: color 0.3s ease;
         }
 
-        .close:hover {
+        .close:hover,
+        .close:focus {
             color: #e74c3c;
+            outline: 3px solid #74b9ff;
+            outline-offset: 2px;
         }
 
         .modal h2 {
-            color: #2d3436;
             margin-bottom: 20px;
             text-align: center;
         }
@@ -1083,59 +673,17 @@
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            border: 2px solid #ddd;
+            border: 2px solid var(--modal-input-border);
             border-radius: 10px;
             font-size: 16px;
             transition: border-color 0.3s ease;
-            background: white;
-            color: #2d3436;
-        }
-
-        /* Theme modal input styles */
-        body.theme-dark .modal input, 
-        body.theme-dark .modal textarea {
-            background: #636e72;
-            color: #ddd;
-            border-color: #636e72;
-        }
-
-        body.theme-light .modal input, 
-        body.theme-light .modal textarea {
-            background: white;
-            color: #2d3436;
-            border-color: #ddd;
-        }
-
-        body.theme-royal .modal input, 
-        body.theme-royal .modal textarea {
-            background: #2c2c2c;
-            color: #d4af37;
-            border-color: #d4af37;
-        }
-
-        body.theme-midnight .modal input, 
-        body.theme-midnight .modal textarea {
-            background: #2c2c2c;
-            color: #cccccc;
-            border-color: #4a4a4a;
-        }
-
-        body.theme-vampire .modal input, 
-        body.theme-vampire .modal textarea {
-            background: #2d1a2d;
-            color: #cc6666;
-            border-color: #660000;
-        }
-
-        body.theme-matrix .modal input, 
-        body.theme-matrix .modal textarea {
-            background: #1a1a1a;
-            color: #00ff00;
-            border-color: #003300;
+            background: var(--modal-input-bg);
+            color: var(--modal-input-color);
         }
 
         .modal input:focus, .modal textarea:focus {
-            outline: none;
+            outline: 3px solid #74b9ff;
+            outline-offset: 2px;
             border-color: #74b9ff;
         }
 
@@ -1154,6 +702,11 @@
         .modal button:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(116, 185, 255, 0.4);
+        }
+
+        .modal button:focus {
+            outline: 3px solid #74b9ff;
+            outline-offset: 2px;
         }
 
         .legend {
@@ -1178,16 +731,25 @@
         }
 
         .legend-today { 
-            background: linear-gradient(135deg, #00b894, #00a085);
-            transition: all 0.3s ease;
+            background: linear-gradient(135deg, var(--today-gradient-start), var(--today-gradient-end));
         }
         .legend-holiday { 
-            background: linear-gradient(135deg, #fd79a8, #e84393);
-            transition: all 0.3s ease;
+            background: linear-gradient(135deg, var(--holiday-gradient-start), var(--holiday-gradient-end));
         }
         .legend-note { 
             background: linear-gradient(135deg, #fdcb6e, #e17055);
-            transition: all 0.3s ease;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
         @media (max-width: 768px) {
@@ -1226,54 +788,55 @@
                 font-size: 10px;
             }
         }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🏮 Lịch Vạn Niên Việt Nam 🏮</h1>
+            <h1>Lịch Vạn Niên Việt Nam</h1>
             <div class="controls">
                 <div class="control-group">
-                    <label>🎨 Theme:</label>
-                    <select id="themeSelect">
-                        <option value="default">🌈 Mặc định</option>
-                        <option value="sakura">🌸 Hoa anh đào</option>
-                        <option value="ocean">🌊 Đại dương</option>
-                        <option value="forest">🌲 Rừng xanh</option>
-                        <option value="sunset">🌅 Hoàng hôn</option>
-                        <option value="royal">👑 Hoàng gia (Vàng kim)</option>
-                        <option value="autumn">🍂 Mùa thu</option>
-                        <option value="dark">🌙 Dark Mode</option>
-                        <option value="midnight">🌚 Midnight Black</option>
-                        <option value="vampire">🧛‍♂️ Vampire</option>
-                        <option value="matrix">💚 Matrix</option>
-                        <option value="light">☀️ Light Mode</option>
-                        <option value="tet">🧧 Tết Nguyên Đán</option>
-                        <option value="liberation">🇻🇳 Giải phóng miền Nam</option>
-                        <option value="labor">⚒️ Ngày Quốc tế Lao động</option>
-                        <option value="independence">🎆 Quốc khánh</option>
-                        <option value="teacher">📚 Ngày Nhà giáo</option>
-                        <option value="women">🌺 Ngày Phụ nữ</option>
-                        <option value="military">⭐ Ngày Quân đội</option>
-                        <option value="mid-autumn">🥮 Tết Trung thu</option>
-                        <option value="vu-lan">🙏 Vu lan</option>
+                    <label for="themeSelect">Giao diện:</label>
+                    <select id="themeSelect" aria-label="Chọn giao diện">
+                        <option value="default">Mặc định</option>
+                        <option value="tet">Tết Nguyên Đán</option>
+                        <option value="hung-vuong">Giỗ Tổ Hùng Vương</option>
+                        <option value="liberation">Giải phóng miền Nam</option>
+                        <option value="labor">Quốc tế Lao động</option>
+                        <option value="national-day">Quốc khánh</option>
+                        <option value="teacher">Ngày Nhà giáo</option>
+                        <option value="women">Ngày Phụ nữ</option>
+                        <option value="mid-autumn">Trung Thu</option>
+                        <option value="christmas">Noel</option>
+                        <option value="halloween">Halloween</option>
+                        <option value="valentine">Valentine</option>
+                        <option value="new-year">New Year</option>
                     </select>
                 </div>
                 <div class="control-group">
-                    <button id="autoThemeBtn" onclick="toggleAutoTheme()">🤖 Tự động</button>
+                    <button id="autoThemeBtn" onclick="toggleAutoTheme()" aria-pressed="false">Tự động</button>
                 </div>
                 <div class="control-group">
-                    <label>Tháng:</label>
-                    <select id="monthSelect"></select>
+                    <label for="monthSelect">Tháng:</label>
+                    <select id="monthSelect" aria-label="Chọn tháng"></select>
                 </div>
                 <div class="control-group">
-                    <label>Năm:</label>
-                    <select id="yearSelect"></select>
+                    <label for="yearSelect">Năm:</label>
+                    <select id="yearSelect" aria-label="Chọn năm"></select>
                 </div>
                 <div class="control-group">
                     <button onclick="goToToday()">Hôm nay</button>
-                    <button onclick="prevMonth()">‹ Tháng trước</button>
-                    <button onclick="nextMonth()">Tháng sau ›</button>
+                    <button onclick="prevMonth()">Tháng trước</button>
+                    <button onclick="nextMonth()">Tháng sau</button>
                 </div>
             </div>
         </div>
@@ -1285,31 +848,33 @@
                 
                 <div class="legend">
                     <div class="legend-item">
-                        <div class="legend-color legend-today"></div>
+                        <div class="legend-color legend-today" aria-hidden="true"></div>
                         <span>Hôm nay</span>
                     </div>
                     <div class="legend-item">
-                        <div class="legend-color legend-holiday"></div>
+                        <div class="legend-color legend-holiday" aria-hidden="true"></div>
                         <span>Ngày lễ</span>
                     </div>
                     <div class="legend-item">
-                        <div class="legend-color legend-note"></div>
+                        <div class="legend-color legend-note" aria-hidden="true"></div>
                         <span>Có ghi chú</span>
                     </div>
                 </div>
             </div>
             
-            <div class="calendar" id="calendar"></div>
+            <div class="calendar" id="calendar" role="grid" aria-label="Lịch tháng"></div>
         </div>
     </div>
 
     <!-- Modal -->
-    <div id="noteModal" class="modal">
+    <div id="noteModal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Ghi chú cho ngày <span id="modalDate"></span></h2>
+            <span class="close" onclick="closeModal()" aria-label="Đóng">&times;</span>
+            <h2 id="modal-title">Ghi chú cho ngày <span id="modalDate"></span></h2>
             <div id="modalLunarDate"></div>
-            <textarea id="noteText" rows="4" placeholder="Nhập ghi chú của bạn..."></textarea>
+            <label for="noteText" class="sr-only">Nội dung ghi chú</label>
+            <textarea id="noteText" rows="4" placeholder="Nhập ghi chú của bạn..." aria-describedby="note-help"></textarea>
+            <div id="note-help" class="sr-only">Nhấn Ctrl+Enter để lưu nhanh</div>
             <div>
                 <button onclick="saveNote()">Lưu ghi chú</button>
                 <button onclick="deleteNote()">Xóa ghi chú</button>
@@ -1323,9 +888,35 @@
         let currentMonth = new Date().getMonth();
         let currentYear = new Date().getFullYear();
         let selectedDate = null;
-        let notes = JSON.parse(localStorage.getItem('calendarNotes') || '{}');
-        let currentTheme = localStorage.getItem('calendarTheme') || 'default';
-        let isAutoTheme = localStorage.getItem('isAutoTheme') !== 'false'; // Mặc định bật tự động
+        let notes = {};
+        let currentTheme = 'default';
+        let isAutoTheme = true;
+
+        // Khởi tạo notes từ localStorage nếu có
+        try {
+            const storedNotes = localStorage.getItem('calendarNotes');
+            if (storedNotes) {
+                notes = JSON.parse(storedNotes);
+            }
+        } catch (e) {
+            console.warn('Không thể tải ghi chú từ localStorage:', e);
+            notes = {};
+        }
+
+        // Khởi tạo theme và auto theme
+        try {
+            const storedTheme = localStorage.getItem('calendarTheme');
+            if (storedTheme) {
+                currentTheme = storedTheme;
+            }
+            
+            const storedAutoTheme = localStorage.getItem('isAutoTheme');
+            if (storedAutoTheme !== null) {
+                isAutoTheme = storedAutoTheme !== 'false';
+            }
+        } catch (e) {
+            console.warn('Không thể tải cài đặt từ localStorage:', e);
+        }
 
         // Tên tháng và thứ
         const monthNames = [
@@ -1338,15 +929,18 @@
         // Các ngày lễ Việt Nam
         const holidays = {
             '1-1': 'Tết Dương lịch',
+            '3-8': 'Ngày Quốc tế Phụ nữ',
             '4-30': 'Giải phóng miền Nam',
             '5-1': 'Quốc tế Lao động',
             '9-2': 'Quốc khánh',
             '10-20': 'Ngày Phụ nữ Việt Nam',
             '11-20': 'Ngày Nhà giáo Việt Nam',
-            '12-22': 'Ngày Quân đội nhân dân Việt Nam'
+            '12-25': 'Lễ Giáng sinh',
+            '10-31': 'Halloween',
+            '2-14': 'Ngày Valentine'
         };
 
-        // Ngày lễ âm lịch (sẽ được tính toán)
+        // Ngày lễ âm lịch
         const lunarHolidays = {
             '1-1': 'Tết Nguyên đán',
             '1-15': 'Tết Nguyên tiêu',
@@ -1359,236 +953,48 @@
             '12-23': 'Tết Ông Táo'
         };
 
-        // Cấu hình theme tự động cho ngày lễ Việt Nam
+        // Cấu hình theme tự động theo ngày lễ
         const holidayThemes = {
-            // Ngày lễ dương lịch (tháng-ngày: theme)
-            '1-1': 'tet',         // Tết Dương lịch
-            '4-30': 'liberation', // Giải phóng miền Nam
-            '5-1': 'labor',       // Quốc tế Lao động
-            '9-2': 'independence', // Quốc khánh
-            '10-20': 'women',     // Ngày Phụ nữ Việt Nam
-            '11-20': 'teacher',   // Ngày Nhà giáo
-            '12-22': 'military',  // Ngày Quân đội
-            
-            // Ngày lễ âm lịch sẽ được tính toán động
-            'lunar-1-1': 'tet',        // Tết Nguyên đán
-            'lunar-7-15': 'vu-lan',    // Vu lan
-            'lunar-8-15': 'mid-autumn' // Trung thu
+            '1-1': 'new-year',
+            '3-8': 'women',
+            '4-30': 'liberation',
+            '5-1': 'labor',
+            '9-2': 'national-day',
+            '10-20': 'women',
+            '11-20': 'teacher',
+            '12-25': 'christmas',
+            '10-31': 'halloween',
+            '2-14': 'valentine',
+            'lunar-1-1': 'tet',
+            'lunar-3-10': 'hung-vuong',
+            'lunar-8-15': 'mid-autumn'
         };
 
-        // Hàm kiểm tra và tự động chuyển đổi theme theo ngày lễ
-        function checkAndSetAutoTheme() {
-            if (!isAutoTheme) return;
-
-            const today = new Date();
-            const currentDay = today.getDate();
-            const currentMonth = today.getMonth() + 1; // getMonth() returns 0-11
-            const currentYear = today.getFullYear();
-
-            // Kiểm tra ngày lễ dương lịch
-            const solarHolidayKey = `${currentMonth}-${currentDay}`;
-            
-            // Kiểm tra ngày lễ âm lịch
-            const lunarDate = LunarCalendar.convertSolar2Lunar(currentDay, currentMonth, currentYear);
-            const lunarHolidayKey = `lunar-${lunarDate[1]}-${lunarDate[0]}`;
-
-            // Tìm theme phù hợp
-            let targetTheme = null;
-            let holidayName = null;
-
-            if (holidayThemes[solarHolidayKey]) {
-                targetTheme = holidayThemes[solarHolidayKey];
-                holidayName = holidays[solarHolidayKey];
-            } else if (holidayThemes[lunarHolidayKey]) {
-                targetTheme = holidayThemes[lunarHolidayKey];
-                holidayName = lunarHolidays[`${lunarDate[1]}-${lunarDate[0]}`];
-            }
-
-            // Nếu không có ngày lễ hôm nay, kiểm tra trong vòng 1 tuần tới
-            if (!targetTheme) {
-                for (let i = 1; i <= 7; i++) {
-                    const checkDate = new Date(today);
-                    checkDate.setDate(today.getDate() + i);
-                    
-                    const checkDay = checkDate.getDate();
-                    const checkMonth = checkDate.getMonth() + 1;
-                    const checkYear = checkDate.getFullYear();
-                    
-                    // Kiểm tra ngày lễ dương lịch trong tuần tới
-                    const futureSolarKey = `${checkMonth}-${checkDay}`;
-                    if (holidayThemes[futureSolarKey]) {
-                        targetTheme = holidayThemes[futureSolarKey];
-                        holidayName = holidays[futureSolarKey];
-                        break;
-                    }
-                    
-                    // Kiểm tra ngày lễ âm lịch trong tuần tới
-                    const futureLunarDate = LunarCalendar.convertSolar2Lunar(checkDay, checkMonth, checkYear);
-                    const futureLunarKey = `lunar-${futureLunarDate[1]}-${futureLunarDate[0]}`;
-                    if (holidayThemes[futureLunarKey]) {
-                        targetTheme = holidayThemes[futureLunarKey];
-                        holidayName = lunarHolidays[`${futureLunarDate[1]}-${futureLunarDate[0]}`];
-                        break;
-                    }
-                }
-            }
-
-            // Nếu không có ngày lễ trong tuần tới, kiểm tra xem có đang trong khoảng thời gian sau ngày lễ không
-            if (!targetTheme) {
-                for (let i = 1; i <= 7; i++) {
-                    const checkDate = new Date(today);
-                    checkDate.setDate(today.getDate() - i);
-                    
-                    const checkDay = checkDate.getDate();
-                    const checkMonth = checkDate.getMonth() + 1;
-                    const checkYear = checkDate.getFullYear();
-                    
-                    // Kiểm tra ngày lễ dương lịch đã qua
-                    const pastSolarKey = `${checkMonth}-${checkDay}`;
-                    if (holidayThemes[pastSolarKey]) {
-                        targetTheme = holidayThemes[pastSolarKey];
-                        holidayName = holidays[pastSolarKey];
-                        break;
-                    }
-                    
-                    // Kiểm tra ngày lễ âm lịch đã qua
-                    const pastLunarDate = LunarCalendar.convertSolar2Lunar(checkDay, checkMonth, checkYear);
-                    const pastLunarKey = `lunar-${pastLunarDate[1]}-${pastLunarDate[0]}`;
-                    if (holidayThemes[pastLunarKey]) {
-                        targetTheme = holidayThemes[pastLunarKey];
-                        holidayName = lunarHolidays[`${pastLunarDate[1]}-${pastLunarDate[0]}`];
-                        break;
-                    }
-                }
-            }
-
-            // Áp dụng theme nếu tìm thấy
-            if (targetTheme && currentTheme !== targetTheme) {
-                console.log(`Tự động chuyển sang theme ${targetTheme} cho ngày lễ: ${holidayName}`);
-                changeTheme(targetTheme, true);
-                
-                // Hiển thị thông báo
-                showThemeNotification(targetTheme, holidayName);
-            } else if (!targetTheme && currentTheme !== 'default' && localStorage.getItem('autoThemeActive') === 'true') {
-                // Quay về theme mặc định nếu hết thời gian ngày lễ
-                console.log('Quay về theme mặc định');
-                changeTheme('default', true);
-                localStorage.removeItem('autoThemeActive');
-            }
-
-            if (targetTheme) {
-                localStorage.setItem('autoThemeActive', 'true');
-            }
-        }
-
-        // Hàm hiển thị thông báo theme tự động
-        function showThemeNotification(theme, holidayName) {
-            // Tạo notification element nếu chưa có
-            let notification = document.getElementById('themeNotification');
-            if (!notification) {
-                notification = document.createElement('div');
-                notification.id = 'themeNotification';
-                notification.style.cssText = `
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    background: linear-gradient(135deg, #00b894, #00a085);
-                    color: white;
-                    padding: 15px 20px;
-                    border-radius: 10px;
-                    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-                    z-index: 1001;
-                    font-weight: bold;
-                    max-width: 300px;
-                    opacity: 0;
-                    transform: translateX(100%);
-                    transition: all 0.3s ease;
-                `;
-                document.body.appendChild(notification);
-            }
-
-            notification.innerHTML = `
-                🎉 Chủ đề tự động: ${holidayName}<br>
-                <small>Theme sẽ tự động thay đổi theo ngày lễ Việt Nam</small>
-                <button onclick="toggleAutoTheme()" style="
-                    background: rgba(255,255,255,0.2);
-                    border: none;
-                    color: white;
-                    padding: 5px 10px;
-                    border-radius: 5px;
-                    margin-top: 5px;
-                    cursor: pointer;
-                    font-size: 12px;
-                ">Tắt tự động</button>
-            `;
-
-            // Hiển thị notification
-            setTimeout(() => {
-                notification.style.opacity = '1';
-                notification.style.transform = 'translateX(0)';
-            }, 100);
-
-            // Tự động ẩn sau 5 giây
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateX(100%)';
-            }, 5000);
-        }
-
-        // Hàm bật/tắt theme tự động
-        function toggleAutoTheme() {
-            isAutoTheme = !isAutoTheme;
-            localStorage.setItem('isAutoTheme', isAutoTheme);
-            
-            updateAutoThemeButton();
-            
-            if (!isAutoTheme) {
-                // Tắt auto theme
-                localStorage.removeItem('autoThemeActive');
-                console.log('Đã tắt chế độ tự động chuyển theme');
-            } else {
-                // Bật auto theme, kiểm tra ngay
-                checkAndSetAutoTheme();
-                console.log('Đã bật chế độ tự động chuyển theme');
-            }
-            
-            // Ẩn notification nếu có
-            const notification = document.getElementById('themeNotification');
-            if (notification) {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateX(100%)';
-            }
-        }
-
-        // Thuật toán chuyển đổi Dương lịch sang Âm lịch
+        // Thuật toán chuyển đổi Dương lịch sang Âm lịch (đã tối ưu)
         class LunarCalendar {
             static PI = Math.PI;
             
-            // Tính số ngày Julian
             static jdFromDate(dd, mm, yy) {
-                let a, y, m, jd;
-                a = Math.floor((14 - mm) / 12);
-                y = yy + 4800 - a;
-                m = mm + 12 * a - 3;
-                jd = dd + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+                const a = Math.floor((14 - mm) / 12);
+                const y = yy + 4800 - a;
+                const m = mm + 12 * a - 3;
+                let jd = dd + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
                 if (jd < 2299161) {
                     jd = dd + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - 32083;
                 }
                 return jd;
             }
 
-            // Tính Sóc (New Moon)
             static getNewMoonDay(k, timeZone) {
-                let T, T2, T3, dr, Jd1, M, Mpr, F;
-                T = k / 1236.85;
-                T2 = T * T;
-                T3 = T2 * T;
-                dr = this.PI / 180;
-                Jd1 = 2415020.75933 + 29.53058868 * k + 0.0001178 * T2 - 0.000000155 * T3;
+                const T = k / 1236.85;
+                const T2 = T * T;
+                const T3 = T2 * T;
+                const dr = this.PI / 180;
+                let Jd1 = 2415020.75933 + 29.53058868 * k + 0.0001178 * T2 - 0.000000155 * T3;
                 Jd1 = Jd1 + 0.00033 * Math.sin((166.56 + 132.87 * T - 0.009173 * T2) * dr);
-                M = 359.2242 + 29.10535608 * k - 0.0000333 * T2 - 0.00000347 * T3;
-                Mpr = 306.0253 + 385.81691806 * k + 0.0107306 * T2 + 0.00001236 * T3;
-                F = 21.2964 + 390.67050646 * k - 0.0016528 * T2 - 0.00000239 * T3;
+                const M = 359.2242 + 29.10535608 * k - 0.0000333 * T2 - 0.00000347 * T3;
+                const Mpr = 306.0253 + 385.81691806 * k + 0.0107306 * T2 + 0.00001236 * T3;
+                const F = 21.2964 + 390.67050646 * k - 0.0016528 * T2 - 0.00000239 * T3;
                 let C1 = (0.1734 - 0.000393 * T) * Math.sin(M * dr) + 0.0021 * Math.sin(2 * dr * M);
                 C1 = C1 - 0.4068 * Math.sin(Mpr * dr) + 0.0161 * Math.sin(dr * 2 * Mpr);
                 C1 = C1 - 0.0004 * Math.sin(dr * 3 * Mpr);
@@ -1596,51 +1002,43 @@
                 C1 = C1 - 0.0074 * Math.sin(dr * (M - Mpr)) + 0.0004 * Math.sin(dr * (2 * F + M));
                 C1 = C1 - 0.0004 * Math.sin(dr * (2 * F - M)) - 0.0006 * Math.sin(dr * (2 * F + Mpr));
                 C1 = C1 + 0.0010 * Math.sin(dr * (2 * F - Mpr)) + 0.0005 * Math.sin(dr * (2 * Mpr + M));
-                let deltat;
-                if (T < -11) {
-                    deltat = 0.001 + 0.000839 * T + 0.0002261 * T2 - 0.00000845 * T3 - 0.000000081 * T * T3;
-                } else {
-                    deltat = -0.000278 + 0.000265 * T + 0.000262 * T2;
-                }
-                let JdNew = Jd1 + C1 + deltat;
+                const deltat = T < -11 ? 
+                    0.001 + 0.000839 * T + 0.0002261 * T2 - 0.00000845 * T3 - 0.000000081 * T * T3 :
+                    -0.000278 + 0.000265 * T + 0.000262 * T2;
+                const JdNew = Jd1 + C1 + deltat;
                 return Math.floor(JdNew + 0.5 + timeZone / 24);
             }
 
-            // Tính tháng 11 âm lịch
             static getLunarMonth11(yy, timeZone) {
-                let off = this.jdFromDate(31, 12, yy) - 2415021;
-                let k = Math.floor(off / 29.530588853);
+                const off = this.jdFromDate(31, 12, yy) - 2415021;
+                const k = Math.floor(off / 29.530588853);
                 let nm = this.getNewMoonDay(k, timeZone);
-                let sunLong = this.getSunLongitude(nm, timeZone);
+                const sunLong = this.getSunLongitude(nm, timeZone);
                 if (sunLong >= 9) {
                     nm = this.getNewMoonDay(k - 1, timeZone);
                 }
                 return nm;
             }
 
-            // Tính kinh độ mặt trời
             static getSunLongitude(jdn, timeZone) {
-                let T, T2, dr, M, L0, DL, L;
-                T = (jdn - 2451545.5 - timeZone / 24) / 36525;
-                T2 = T * T;
-                dr = this.PI / 180;
-                M = 357.52910 + 35999.05030 * T - 0.0001559 * T2 - 0.00000048 * T * T2;
-                L0 = 280.46645 + 36000.76983 * T + 0.0003032 * T2;
-                DL = (1.914600 - 0.004817 * T - 0.000014 * T2) * Math.sin(dr * M);
+                const T = (jdn - 2451545.5 - timeZone / 24) / 36525;
+                const T2 = T * T;
+                const dr = this.PI / 180;
+                const M = 357.52910 + 35999.05030 * T - 0.0001559 * T2 - 0.00000048 * T * T2;
+                const L0 = 280.46645 + 36000.76983 * T + 0.0003032 * T2;
+                let DL = (1.914600 - 0.004817 * T - 0.000014 * T2) * Math.sin(dr * M);
                 DL = DL + (0.019993 - 0.000101 * T) * Math.sin(dr * 2 * M) + 0.000290 * Math.sin(dr * 3 * M);
-                L = L0 + DL;
+                let L = L0 + DL;
                 L = L * dr;
                 L = L - this.PI * 2 * (Math.floor(L / (this.PI * 2)));
                 return Math.floor(L / this.PI * 6);
             }
 
-            // Kiểm tra năm nhuận âm lịch
             static getLeapMonthOffset(a11, timeZone) {
-                let k, last, arc, i;
-                k = Math.floor((a11 - 2415021.076998695) / 29.530588853 + 0.5);
-                last = 0;
-                i = 1;
-                arc = this.getSunLongitude(this.getNewMoonDay(k + i, timeZone), timeZone);
+                const k = Math.floor((a11 - 2415021.076998695) / 29.530588853 + 0.5);
+                let last = 0;
+                let i = 1;
+                let arc = this.getSunLongitude(this.getNewMoonDay(k + i, timeZone), timeZone);
                 do {
                     last = arc;
                     i++;
@@ -1649,30 +1047,28 @@
                 return i - 1;
             }
 
-            // Chuyển đổi dương lịch sang âm lịch
             static convertSolar2Lunar(dd, mm, yy, timeZone = 7) {
-                let k, dayNumber, monthStart, a11, b11, lunarDay, lunarMonth, lunarYear, lunarLeap;
-                dayNumber = this.jdFromDate(dd, mm, yy);
-                k = Math.floor((dayNumber - 2415021.076998695) / 29.530588853);
-                monthStart = this.getNewMoonDay(k + 1, timeZone);
+                const dayNumber = this.jdFromDate(dd, mm, yy);
+                const k = Math.floor((dayNumber - 2415021.076998695) / 29.530588853);
+                let monthStart = this.getNewMoonDay(k + 1, timeZone);
                 if (monthStart > dayNumber) {
                     monthStart = this.getNewMoonDay(k, timeZone);
                 }
-                a11 = this.getLunarMonth11(yy, timeZone);
-                b11 = a11;
+                let a11 = this.getLunarMonth11(yy, timeZone);
+                const b11 = a11;
+                let lunarYear;
                 if (a11 >= monthStart) {
                     lunarYear = yy;
                     a11 = this.getLunarMonth11(yy - 1, timeZone);
                 } else {
                     lunarYear = yy + 1;
-                    b11 = this.getLunarMonth11(yy + 1, timeZone);
                 }
-                lunarDay = dayNumber - monthStart + 1;
-                let diff = Math.floor((monthStart - a11) / 29);
-                lunarLeap = 0;
-                lunarMonth = diff + 11;
+                const lunarDay = dayNumber - monthStart + 1;
+                const diff = Math.floor((monthStart - a11) / 29);
+                let lunarLeap = 0;
+                let lunarMonth = diff + 11;
                 if (b11 - a11 > 365) {
-                    let leapMonthDiff = this.getLeapMonthOffset(a11, timeZone);
+                    const leapMonthDiff = this.getLeapMonthOffset(a11, timeZone);
                     if (diff >= leapMonthDiff) {
                         lunarMonth = diff + 10;
                         if (diff == leapMonthDiff) {
@@ -1688,67 +1084,107 @@
                 }
                 return [lunarDay, lunarMonth, lunarYear, lunarLeap];
             }
-
-            // Chuyển âm lịch sang dương lịch
-            static convertLunar2Solar(lunarDay, lunarMonth, lunarYear, lunarLeap, timeZone = 7) {
-                let a11, b11, k, off, leapOff, leapMonth, monthStart;
-                if (lunarMonth < 11) {
-                    a11 = this.getLunarMonth11(lunarYear - 1, timeZone);
-                    b11 = this.getLunarMonth11(lunarYear, timeZone);
-                } else {
-                    a11 = this.getLunarMonth11(lunarYear, timeZone);
-                    b11 = this.getLunarMonth11(lunarYear + 1, timeZone);
-                }
-                off = lunarMonth - 11;
-                if (off < 0) {
-                    off += 12;
-                }
-                if (b11 - a11 > 365) {
-                    leapOff = this.getLeapMonthOffset(a11, timeZone);
-                    leapMonth = leapOff - 2;
-                    if (leapMonth < 0) {
-                        leapMonth += 12;
-                    }
-                    if (lunarLeap != 0 && lunarMonth != leapMonth) {
-                        return [0, 0, 0];
-                    } else if (lunarLeap != 0 || off >= leapOff) {
-                        off += 1;
-                    }
-                }
-                k = Math.floor((a11 - 2415021.076998695) / 29.530588853 + 0.5);
-                monthStart = this.getNewMoonDay(k + off, timeZone);
-                return this.jdToDate(monthStart + lunarDay - 1);
-            }
-
-            // Chuyển đổi Julian Day sang ngày tháng năm
-            static jdToDate(jd) {
-                let a, b, c, d, e, m, day, month, year;
-                if (jd > 2299160) {
-                    a = jd + 32044;
-                    b = Math.floor((4 * a + 3) / 146097);
-                    c = a - Math.floor((b * 146097) / 4);
-                } else {
-                    b = 0;
-                    c = jd + 32082;
-                }
-                d = Math.floor((4 * c + 3) / 1461);
-                e = c - Math.floor((1461 * d) / 4);
-                m = Math.floor((5 * e + 2) / 153);
-                day = e - Math.floor((153 * m + 2) / 5) + 1;
-                month = m + 3 - 12 * Math.floor(m / 10);
-                year = b * 100 + d - 4800 + Math.floor(m / 10);
-                return [day, month, year];
-            }
         }
 
-        // Hàm kiểm tra năm nhuận dương lịch
+        // Utility functions
         function isLeapYear(year) {
             return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
         }
 
-        // Hàm lấy số ngày trong tháng
-        function getDaysInMonth(month, year) {
-            return new Date(year, month + 1, 0).getDate();
+        function saveToLocalStorage(key, value) {
+            try {
+                localStorage.setItem(key, value);
+            } catch (e) {
+                console.warn('Không thể lưu vào localStorage:', e);
+            }
+        }
+
+        // Hàm kiểm tra và tự động chuyển đổi theme theo ngày lễ
+        function checkAndSetAutoTheme() {
+            if (!isAutoTheme) return;
+
+            const today = new Date();
+            const currentDay = today.getDate();
+            const currentMonth = today.getMonth() + 1;
+            const currentYear = today.getFullYear();
+
+            // Kiểm tra ngày lễ dương lịch
+            const solarHolidayKey = `${currentMonth}-${currentDay}`;
+            
+            // Kiểm tra ngày lễ âm lịch
+            const lunarDate = LunarCalendar.convertSolar2Lunar(currentDay, currentMonth, currentYear);
+            const lunarHolidayKey = `lunar-${lunarDate[1]}-${lunarDate[0]}`;
+
+            // Tìm theme phù hợp
+            let targetTheme = holidayThemes[solarHolidayKey] || holidayThemes[lunarHolidayKey];
+
+            // Kiểm tra trong vòng 7 ngày tới và 7 ngày trước
+            if (!targetTheme) {
+                for (let i = 1; i <= 7; i++) {
+                    // Kiểm tra tương lai
+                    const futureDate = new Date(today);
+                    futureDate.setDate(today.getDate() + i);
+                    
+                    const futureDay = futureDate.getDate();
+                    const futureMonth = futureDate.getMonth() + 1;
+                    const futureYear = futureDate.getFullYear();
+                    
+                    const futureSolarKey = `${futureMonth}-${futureDay}`;
+                    const futureLunarDate = LunarCalendar.convertSolar2Lunar(futureDay, futureMonth, futureYear);
+                    const futureLunarKey = `lunar-${futureLunarDate[1]}-${futureLunarDate[0]}`;
+                    
+                    if (holidayThemes[futureSolarKey] || holidayThemes[futureLunarKey]) {
+                        targetTheme = holidayThemes[futureSolarKey] || holidayThemes[futureLunarKey];
+                        break;
+                    }
+                    
+                    // Kiểm tra quá khứ
+                    const pastDate = new Date(today);
+                    pastDate.setDate(today.getDate() - i);
+                    
+                    const pastDay = pastDate.getDate();
+                    const pastMonth = pastDate.getMonth() + 1;
+                    const pastYear = pastDate.getFullYear();
+                    
+                    const pastSolarKey = `${pastMonth}-${pastDay}`;
+                    const pastLunarDate = LunarCalendar.convertSolar2Lunar(pastDay, pastMonth, pastYear);
+                    const pastLunarKey = `lunar-${pastLunarDate[1]}-${pastLunarDate[0]}`;
+                    
+                    if (holidayThemes[pastSolarKey] || holidayThemes[pastLunarKey]) {
+                        targetTheme = holidayThemes[pastSolarKey] || holidayThemes[pastLunarKey];
+                        break;
+                    }
+                }
+            }
+
+            // Áp dụng theme
+            if (targetTheme && currentTheme !== targetTheme) {
+                changeTheme(targetTheme, true);
+                saveToLocalStorage('autoThemeActive', 'true');
+            } else if (!targetTheme && currentTheme !== 'default' && localStorage.getItem('autoThemeActive') === 'true') {
+                changeTheme('default', true);
+                localStorage.removeItem('autoThemeActive');
+            }
+
+            if (targetTheme) {
+                saveToLocalStorage('autoThemeActive', 'true');
+            }
+        }
+
+        // Hàm bật/tắt theme tự động
+        function toggleAutoTheme() {
+            isAutoTheme = !isAutoTheme;
+            saveToLocalStorage('isAutoTheme', isAutoTheme);
+            updateAutoThemeButton();
+            
+            const autoThemeBtn = document.getElementById('autoThemeBtn');
+            autoThemeBtn.setAttribute('aria-pressed', isAutoTheme);
+            
+            if (isAutoTheme) {
+                checkAndSetAutoTheme();
+            } else {
+                localStorage.removeItem('autoThemeActive');
+            }
         }
 
         // Hàm khởi tạo các dropdown
@@ -1756,7 +1192,6 @@
             const monthSelect = document.getElementById('monthSelect');
             const yearSelect = document.getElementById('yearSelect');
             const themeSelect = document.getElementById('themeSelect');
-            const autoThemeBtn = document.getElementById('autoThemeBtn');
 
             // Khởi tạo dropdown tháng
             monthNames.forEach((month, index) => {
@@ -1778,9 +1213,9 @@
             yearSelect.value = currentYear;
             themeSelect.value = currentTheme;
 
-            // Cập nhật trạng thái nút auto theme
             updateAutoThemeButton();
 
+            // Event listeners
             monthSelect.addEventListener('change', (e) => {
                 currentMonth = parseInt(e.target.value);
                 renderCalendar();
@@ -1800,27 +1235,28 @@
         function updateAutoThemeButton() {
             const autoThemeBtn = document.getElementById('autoThemeBtn');
             if (autoThemeBtn) {
-                if (isAutoTheme) {
-                    autoThemeBtn.textContent = '🤖 Tự động: BẬT';
-                    autoThemeBtn.style.background = 'linear-gradient(135deg, #00b894, #00a085)';
-                } else {
-                    autoThemeBtn.textContent = '🤖 Tự động: TẮT';
-                    autoThemeBtn.style.background = 'rgba(255,255,255,0.2)';
-                }
+                autoThemeBtn.textContent = isAutoTheme ? 'Tự động: BẬT' : 'Tự động: TẮT';
+                autoThemeBtn.style.background = isAutoTheme ? 
+                    'linear-gradient(135deg, #00b894, #00a085)' : 
+                    'rgba(255,255,255,0.2)';
+                autoThemeBtn.setAttribute('aria-pressed', isAutoTheme);
             }
         }
 
         // Hàm thay đổi theme
         function changeTheme(theme, isAutomatic = false) {
+            // Xóa class theme cũ
+            document.body.className = document.body.className.replace(/theme-\w+/g, '');
+            
             currentTheme = theme;
-            document.body.className = `theme-${theme}`;
+            document.body.classList.add(`theme-${theme}`);
             
             if (!isAutomatic) {
-                localStorage.setItem('calendarTheme', theme);
-                // Nếu người dùng chọn theme thủ công, tạm thời tắt auto theme
+                saveToLocalStorage('calendarTheme', theme);
+                // Tắt auto theme khi người dùng chọn manual
                 if (isAutoTheme) {
                     isAutoTheme = false;
-                    localStorage.setItem('isAutoTheme', 'false');
+                    saveToLocalStorage('isAutoTheme', 'false');
                     updateAutoThemeButton();
                 }
             }
@@ -1841,7 +1277,7 @@
             // Cập nhật tiêu đề
             monthYear.textContent = `${monthNames[currentMonth]} ${currentYear}`;
             
-            // Thông tin năm nhuận
+            // Thông tin năm
             const isLeap = isLeapYear(currentYear);
             const lunarDate = LunarCalendar.convertSolar2Lunar(15, currentMonth + 1, currentYear);
             const lunarYear = lunarDate[2];
@@ -1859,6 +1295,7 @@
                 const dayHeader = document.createElement('div');
                 dayHeader.classList.add('day-header');
                 dayHeader.textContent = day;
+                dayHeader.setAttribute('role', 'columnheader');
                 calendar.appendChild(dayHeader);
             });
 
@@ -1885,6 +1322,8 @@
         function createDayElement(date) {
             const day = document.createElement('div');
             day.classList.add('day');
+            day.setAttribute('role', 'gridcell');
+            day.setAttribute('tabindex', '0');
             
             const dayNumber = date.getDate();
             const month = date.getMonth();
@@ -1899,6 +1338,9 @@
             // Kiểm tra hôm nay
             if (date.toDateString() === today.toDateString()) {
                 day.classList.add('today');
+                day.setAttribute('aria-label', `Hôm nay, ${dayNumber} tháng ${month + 1} năm ${year}`);
+            } else {
+                day.setAttribute('aria-label', `${dayNumber} tháng ${month + 1} năm ${year}`);
             }
             
             // Tạo nội dung ngày
@@ -1927,6 +1369,10 @@
                 holidayDiv.classList.add('holiday-name');
                 holidayDiv.textContent = holidays[holidayKey];
                 day.appendChild(holidayDiv);
+                
+                // Cập nhật aria-label
+                const currentLabel = day.getAttribute('aria-label');
+                day.setAttribute('aria-label', `${currentLabel}, ${holidays[holidayKey]}`);
             }
             
             // Kiểm tra ngày lễ âm lịch
@@ -1937,6 +1383,10 @@
                 holidayDiv.classList.add('holiday-name');
                 holidayDiv.textContent = lunarHolidays[lunarHolidayKey];
                 day.appendChild(holidayDiv);
+                
+                // Cập nhật aria-label
+                const currentLabel = day.getAttribute('aria-label');
+                day.setAttribute('aria-label', `${currentLabel}, ${lunarHolidays[lunarHolidayKey]}`);
             }
             
             // Kiểm tra ghi chú
@@ -1952,12 +1402,24 @@
                     day.style.background = 'linear-gradient(135deg, #fdcb6e, #e17055)';
                     day.style.color = 'white';
                 }
+                
+                // Cập nhật aria-label
+                const currentLabel = day.getAttribute('aria-label');
+                day.setAttribute('aria-label', `${currentLabel}, có ghi chú`);
             }
             
-            // Thêm sự kiện click
-            day.addEventListener('click', () => {
+            // Thêm sự kiện click và keyboard
+            const openModalHandler = () => {
                 selectedDate = { day: dayNumber, month: month + 1, year: year };
                 openModal(date, lunarDate);
+            };
+            
+            day.addEventListener('click', openModalHandler);
+            day.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openModalHandler();
+                }
             });
             
             return day;
@@ -1981,11 +1443,46 @@
             noteText.value = notes[noteKey] || '';
             
             modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            noteText.focus();
+            
+            // Trap focus trong modal
+            trapFocus(modal);
         }
 
         // Hàm đóng modal
         function closeModal() {
-            document.getElementById('noteModal').style.display = 'none';
+            const modal = document.getElementById('noteModal');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        // Hàm trap focus trong modal
+        function trapFocus(element) {
+            const focusableElements = element.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            element.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstElement) {
+                            e.preventDefault();
+                            lastElement.focus();
+                        }
+                    } else {
+                        if (document.activeElement === lastElement) {
+                            e.preventDefault();
+                            firstElement.focus();
+                        }
+                    }
+                }
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
         }
 
         // Hàm lưu ghi chú
@@ -1994,7 +1491,7 @@
             if (selectedDate && noteText) {
                 const noteKey = `${selectedDate.year}-${selectedDate.month}-${selectedDate.day}`;
                 notes[noteKey] = noteText;
-                localStorage.setItem('calendarNotes', JSON.stringify(notes));
+                saveToLocalStorage('calendarNotes', JSON.stringify(notes));
                 renderCalendar();
                 closeModal();
             }
@@ -2005,7 +1502,7 @@
             if (selectedDate) {
                 const noteKey = `${selectedDate.year}-${selectedDate.month}-${selectedDate.day}`;
                 delete notes[noteKey];
-                localStorage.setItem('calendarNotes', JSON.stringify(notes));
+                saveToLocalStorage('calendarNotes', JSON.stringify(notes));
                 renderCalendar();
                 closeModal();
             }
@@ -2039,22 +1536,24 @@
             renderCalendar();
         }
 
-        // Xử lý sự kiện đóng modal
+        // Xử lý sự kiện khi trang được tải
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('noteModal');
             const closeBtn = document.getElementsByClassName('close')[0];
             
             closeBtn.onclick = closeModal;
             
+            // Đóng modal khi click outside
             window.onclick = function(event) {
                 if (event.target === modal) {
                     closeModal();
                 }
             }
             
-            // Xử lý phím Enter trong textarea
+            // Xử lý phím tắt trong textarea
             document.getElementById('noteText').addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' && e.ctrlKey) {
+                    e.preventDefault();
                     saveNote();
                 }
             });
@@ -2071,14 +1570,14 @@
             
             renderCalendar();
             
-            // Thiết lập kiểm tra auto theme định kỳ (mỗi giờ)
-            setInterval(function() {
+            // Thiết lập kiểm tra auto theme định kỳ
+            setInterval(() => {
                 if (isAutoTheme) {
                     checkAndSetAutoTheme();
                 }
-            }, 3600000); // 1 giờ = 3600000ms
+            }, 3600000); // Mỗi giờ
             
-            // Kiểm tra khi chuyển ngày (lúc 00:00)
+            // Kiểm tra khi chuyển ngày
             const now = new Date();
             const tomorrow = new Date(now);
             tomorrow.setDate(tomorrow.getDate() + 1);
@@ -2086,17 +1585,17 @@
             
             const msUntilMidnight = tomorrow.getTime() - now.getTime();
             
-            setTimeout(function() {
+            setTimeout(() => {
                 if (isAutoTheme) {
                     checkAndSetAutoTheme();
                 }
                 
-                // Thiết lập kiểm tra hàng ngày
-                setInterval(function() {
+                // Kiểm tra hàng ngày
+                setInterval(() => {
                     if (isAutoTheme) {
                         checkAndSetAutoTheme();
                     }
-                }, 24 * 60 * 60 * 1000); // 24 giờ
+                }, 24 * 60 * 60 * 1000);
             }, msUntilMidnight);
         });
     </script>
