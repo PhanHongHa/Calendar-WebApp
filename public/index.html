@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,12 +12,12 @@
             --bg-gradient-end: #764ba2;
             --container-bg: white;
             --container-color: #2d3436;
-            --container-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            --container-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             --container-border: transparent;
             --header-gradient-start: #ff6b6b;
             --header-gradient-end: #ee5a24;
             --header-color: white;
-            --header-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            --header-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             --lunar-info-gradient-start: #ffeaa7;
             --lunar-info-gradient-end: #fdcb6e;
             --lunar-info-color: #2d3436;
@@ -463,14 +464,14 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             padding: 10px 20px;
             border-radius: 25px;
             backdrop-filter: blur(10px);
         }
 
         select, button {
-            padding: 8px 15px;
+             padding: 8px 15px;
             border: none;
             border-radius: 20px;
             font-size: 16px;
@@ -478,19 +479,22 @@
             transition: all 0.3s ease;
         }
 
+        .auth-error {margin: 12px auto 0; max-width: 980px; padding: .75rem 1rem; border: 1px solid #ff7675; background: #ffeaea; color: #c0392b; border-radius: .6rem; font-size: .95rem;}
+      
+
         select {
             background: white;
             color: #333;
         }
 
         button {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             color: white;
-            border: 2px solid rgba(255,255,255,0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         button:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
         }
 
@@ -526,7 +530,7 @@
             background: #ddd;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .day-header {
@@ -595,12 +599,12 @@
 
         .day.today .lunar-date,
         .day.holiday .lunar-date {
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .holiday-name {
             font-size: 10px;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             padding: 2px 5px;
             border-radius: 8px;
             margin-bottom: 2px;
@@ -609,7 +613,7 @@
 
         .note {
             font-size: 9px;
-            background: rgba(0,0,0,0.1);
+            background: rgba(0, 0, 0, 0.1);
             padding: 2px 4px;
             border-radius: 6px;
             margin-top: 2px;
@@ -626,7 +630,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
         }
 
@@ -638,14 +642,21 @@
             border-radius: 20px;
             width: 90%;
             max-width: 500px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             animation: modalSlideIn 0.3s ease;
             transition: all 0.3s ease;
         }
 
         @keyframes modalSlideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .close {
@@ -669,7 +680,8 @@
             text-align: center;
         }
 
-        .modal input, .modal textarea {
+        .modal input,
+        .modal textarea {
             width: 100%;
             padding: 12px;
             margin: 10px 0;
@@ -681,7 +693,8 @@
             color: var(--modal-input-color);
         }
 
-        .modal input:focus, .modal textarea:focus {
+        .modal input:focus,
+        .modal textarea:focus {
             outline: 3px solid #74b9ff;
             outline-offset: 2px;
             border-color: #74b9ff;
@@ -730,13 +743,15 @@
             border-radius: 50%;
         }
 
-        .legend-today { 
+        .legend-today {
             background: linear-gradient(135deg, var(--today-gradient-start), var(--today-gradient-end));
         }
-        .legend-holiday { 
+
+        .legend-holiday {
             background: linear-gradient(135deg, var(--holiday-gradient-start), var(--holiday-gradient-end));
         }
-        .legend-note { 
+
+        .legend-note {
             background: linear-gradient(135deg, #fdcb6e, #e17055);
         }
 
@@ -757,33 +772,33 @@
                 margin: 10px;
                 border-radius: 15px;
             }
-            
+
             .header {
                 padding: 20px;
             }
-            
+
             .header h1 {
                 font-size: 1.8em;
             }
-            
+
             .controls {
                 flex-direction: column;
                 gap: 10px;
             }
-            
+
             .calendar-container {
                 padding: 15px;
             }
-            
+
             .day {
                 min-height: 100px;
                 padding: 5px;
             }
-            
+
             .day-number {
                 font-size: 16px;
             }
-            
+
             .lunar-date {
                 font-size: 10px;
             }
@@ -791,7 +806,10 @@
 
         /* Reduced motion for accessibility */
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
+
+            *,
+            *::before,
+            *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
@@ -799,6 +817,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -838,14 +857,21 @@
                     <button onclick="prevMonth()">Tháng trước</button>
                     <button onclick="nextMonth()">Tháng sau</button>
                 </div>
+                <div class="control-group" style="display:flex;align-items:center;gap:.5rem">
+                    <img id="userPhoto" alt="" hidden width="28" height="28" style="border-radius:50%">
+                    <span id="userName" style="opacity:.85">Chưa đăng nhập</span>
+                    <button id="btnSignIn" type="button" onclick="signIn()">Đăng nhập Google</button>
+                    <button id="btnSignOut" type="button" onclick="signOutApp()" hidden>Đăng xuất</button>
+                </div>
             </div>
+            <div id="authError" class="auth-error" hidden></div>
         </div>
-        
+
         <div class="calendar-container">
             <div class="calendar-info">
                 <h2 id="monthYear"></h2>
                 <div class="lunar-info" id="lunarInfo"></div>
-                
+
                 <div class="legend">
                     <div class="legend-item">
                         <div class="legend-color legend-today" aria-hidden="true"></div>
@@ -861,7 +887,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="calendar" id="calendar" role="grid" aria-label="Lịch tháng"></div>
         </div>
     </div>
@@ -873,7 +899,8 @@
             <h2 id="modal-title">Ghi chú cho ngày <span id="modalDate"></span></h2>
             <div id="modalLunarDate"></div>
             <label for="noteText" class="sr-only">Nội dung ghi chú</label>
-            <textarea id="noteText" rows="4" placeholder="Nhập ghi chú của bạn..." aria-describedby="note-help"></textarea>
+            <textarea id="noteText" rows="4" placeholder="Nhập ghi chú của bạn..."
+                aria-describedby="note-help"></textarea>
             <div id="note-help" class="sr-only">Nhấn Ctrl+Enter để lưu nhanh</div>
             <div>
                 <button onclick="saveNote()">Lưu ghi chú</button>
@@ -882,6 +909,12 @@
             </div>
         </div>
     </div>
+
+    <!-- Firebase SDK (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore-compat.js"></script>
+
 
     <script>
         // Dữ liệu và biến toàn cục
@@ -909,7 +942,7 @@
             if (storedTheme) {
                 currentTheme = storedTheme;
             }
-            
+
             const storedAutoTheme = localStorage.getItem('isAutoTheme');
             if (storedAutoTheme !== null) {
                 isAutoTheme = storedAutoTheme !== 'false';
@@ -973,7 +1006,7 @@
         // Thuật toán chuyển đổi Dương lịch sang Âm lịch (đã tối ưu)
         class LunarCalendar {
             static PI = Math.PI;
-            
+
             static jdFromDate(dd, mm, yy) {
                 const a = Math.floor((14 - mm) / 12);
                 const y = yy + 4800 - a;
@@ -1002,7 +1035,7 @@
                 C1 = C1 - 0.0074 * Math.sin(dr * (M - Mpr)) + 0.0004 * Math.sin(dr * (2 * F + M));
                 C1 = C1 - 0.0004 * Math.sin(dr * (2 * F - M)) - 0.0006 * Math.sin(dr * (2 * F + Mpr));
                 C1 = C1 + 0.0010 * Math.sin(dr * (2 * F - Mpr)) + 0.0005 * Math.sin(dr * (2 * Mpr + M));
-                const deltat = T < -11 ? 
+                const deltat = T < -11 ?
                     0.001 + 0.000839 * T + 0.0002261 * T2 - 0.00000845 * T3 - 0.000000081 * T * T3 :
                     -0.000278 + 0.000265 * T + 0.000262 * T2;
                 const JdNew = Jd1 + C1 + deltat;
@@ -1110,7 +1143,7 @@
 
             // Kiểm tra ngày lễ dương lịch
             const solarHolidayKey = `${currentMonth}-${currentDay}`;
-            
+
             // Kiểm tra ngày lễ âm lịch
             const lunarDate = LunarCalendar.convertSolar2Lunar(currentDay, currentMonth, currentYear);
             const lunarHolidayKey = `lunar-${lunarDate[1]}-${lunarDate[0]}`;
@@ -1124,32 +1157,32 @@
                     // Kiểm tra tương lai
                     const futureDate = new Date(today);
                     futureDate.setDate(today.getDate() + i);
-                    
+
                     const futureDay = futureDate.getDate();
                     const futureMonth = futureDate.getMonth() + 1;
                     const futureYear = futureDate.getFullYear();
-                    
+
                     const futureSolarKey = `${futureMonth}-${futureDay}`;
                     const futureLunarDate = LunarCalendar.convertSolar2Lunar(futureDay, futureMonth, futureYear);
                     const futureLunarKey = `lunar-${futureLunarDate[1]}-${futureLunarDate[0]}`;
-                    
+
                     if (holidayThemes[futureSolarKey] || holidayThemes[futureLunarKey]) {
                         targetTheme = holidayThemes[futureSolarKey] || holidayThemes[futureLunarKey];
                         break;
                     }
-                    
+
                     // Kiểm tra quá khứ
                     const pastDate = new Date(today);
                     pastDate.setDate(today.getDate() - i);
-                    
+
                     const pastDay = pastDate.getDate();
                     const pastMonth = pastDate.getMonth() + 1;
                     const pastYear = pastDate.getFullYear();
-                    
+
                     const pastSolarKey = `${pastMonth}-${pastDay}`;
                     const pastLunarDate = LunarCalendar.convertSolar2Lunar(pastDay, pastMonth, pastYear);
                     const pastLunarKey = `lunar-${pastLunarDate[1]}-${pastLunarDate[0]}`;
-                    
+
                     if (holidayThemes[pastSolarKey] || holidayThemes[pastLunarKey]) {
                         targetTheme = holidayThemes[pastSolarKey] || holidayThemes[pastLunarKey];
                         break;
@@ -1176,10 +1209,10 @@
             isAutoTheme = !isAutoTheme;
             saveToLocalStorage('isAutoTheme', isAutoTheme);
             updateAutoThemeButton();
-            
+
             const autoThemeBtn = document.getElementById('autoThemeBtn');
             autoThemeBtn.setAttribute('aria-pressed', isAutoTheme);
-            
+
             if (isAutoTheme) {
                 checkAndSetAutoTheme();
             } else {
@@ -1236,8 +1269,8 @@
             const autoThemeBtn = document.getElementById('autoThemeBtn');
             if (autoThemeBtn) {
                 autoThemeBtn.textContent = isAutoTheme ? 'Tự động: BẬT' : 'Tự động: TẮT';
-                autoThemeBtn.style.background = isAutoTheme ? 
-                    'linear-gradient(135deg, #00b894, #00a085)' : 
+                autoThemeBtn.style.background = isAutoTheme ?
+                    'linear-gradient(135deg, #00b894, #00a085)' :
                     'rgba(255,255,255,0.2)';
                 autoThemeBtn.setAttribute('aria-pressed', isAutoTheme);
             }
@@ -1246,11 +1279,11 @@
         // Hàm thay đổi theme
         function changeTheme(theme, isAutomatic = false) {
             // Xóa class theme cũ
-            document.body.className = document.body.className.replace(/theme-\w+/g, '');
-            
+            document.body.classList.forEach(c => { if (c.startsWith('theme-')) document.body.classList.remove(c); });
+
             currentTheme = theme;
             document.body.classList.add(`theme-${theme}`);
-            
+
             if (!isAutomatic) {
                 saveToLocalStorage('calendarTheme', theme);
                 // Tắt auto theme khi người dùng chọn manual
@@ -1260,7 +1293,7 @@
                     updateAutoThemeButton();
                 }
             }
-            
+
             // Cập nhật dropdown
             const themeSelect = document.getElementById('themeSelect');
             if (themeSelect) {
@@ -1276,12 +1309,12 @@
 
             // Cập nhật tiêu đề
             monthYear.textContent = `${monthNames[currentMonth]} ${currentYear}`;
-            
+
             // Thông tin năm
             const isLeap = isLeapYear(currentYear);
             const lunarDate = LunarCalendar.convertSolar2Lunar(15, currentMonth + 1, currentYear);
             const lunarYear = lunarDate[2];
-            
+
             lunarInfo.innerHTML = `
                 <div>Năm ${currentYear} ${isLeap ? '(Năm nhuận dương lịch)' : ''}</div>
                 <div>Năm âm lịch: ${lunarYear}</div>
@@ -1308,7 +1341,7 @@
             for (let i = 0; i < 42; i++) {
                 const date = new Date(startDate);
                 date.setDate(startDate.getDate() + i);
-                
+
                 const day = createDayElement(date);
                 calendar.appendChild(day);
             }
@@ -1324,17 +1357,17 @@
             day.classList.add('day');
             day.setAttribute('role', 'gridcell');
             day.setAttribute('tabindex', '0');
-            
+
             const dayNumber = date.getDate();
             const month = date.getMonth();
             const year = date.getFullYear();
             const today = new Date();
-            
+
             // Kiểm tra xem có phải ngày khác tháng không
             if (month !== currentMonth) {
                 day.classList.add('other-month');
             }
-            
+
             // Kiểm tra hôm nay
             if (date.toDateString() === today.toDateString()) {
                 day.classList.add('today');
@@ -1342,25 +1375,25 @@
             } else {
                 day.setAttribute('aria-label', `${dayNumber} tháng ${month + 1} năm ${year}`);
             }
-            
+
             // Tạo nội dung ngày
             const dayNumberDiv = document.createElement('div');
             dayNumberDiv.classList.add('day-number');
             dayNumberDiv.textContent = dayNumber;
             day.appendChild(dayNumberDiv);
-            
+
             // Thêm ngày âm lịch
             const lunarDate = LunarCalendar.convertSolar2Lunar(dayNumber, month + 1, year);
             const lunarDay = lunarDate[0];
             const lunarMonth = lunarDate[1];
             const lunarYear = lunarDate[2];
             const isLeapMonth = lunarDate[3];
-            
+
             const lunarDiv = document.createElement('div');
             lunarDiv.classList.add('lunar-date');
             lunarDiv.textContent = `${lunarDay}/${lunarMonth}${isLeapMonth ? 'N' : ''}`;
             day.appendChild(lunarDiv);
-            
+
             // Kiểm tra ngày lễ dương lịch
             const holidayKey = `${month + 1}-${dayNumber}`;
             if (holidays[holidayKey]) {
@@ -1369,12 +1402,12 @@
                 holidayDiv.classList.add('holiday-name');
                 holidayDiv.textContent = holidays[holidayKey];
                 day.appendChild(holidayDiv);
-                
+
                 // Cập nhật aria-label
                 const currentLabel = day.getAttribute('aria-label');
                 day.setAttribute('aria-label', `${currentLabel}, ${holidays[holidayKey]}`);
             }
-            
+
             // Kiểm tra ngày lễ âm lịch
             const lunarHolidayKey = `${lunarMonth}-${lunarDay}`;
             if (lunarHolidays[lunarHolidayKey]) {
@@ -1383,12 +1416,12 @@
                 holidayDiv.classList.add('holiday-name');
                 holidayDiv.textContent = lunarHolidays[lunarHolidayKey];
                 day.appendChild(holidayDiv);
-                
+
                 // Cập nhật aria-label
                 const currentLabel = day.getAttribute('aria-label');
                 day.setAttribute('aria-label', `${currentLabel}, ${lunarHolidays[lunarHolidayKey]}`);
             }
-            
+
             // Kiểm tra ghi chú
             const noteKey = `${year}-${month + 1}-${dayNumber}`;
             if (notes[noteKey]) {
@@ -1396,24 +1429,24 @@
                 noteDiv.classList.add('note');
                 noteDiv.textContent = notes[noteKey];
                 day.appendChild(noteDiv);
-                
+
                 // Thêm màu nền cho ngày có ghi chú
                 if (!day.classList.contains('holiday') && !day.classList.contains('today')) {
                     day.style.background = 'linear-gradient(135deg, #fdcb6e, #e17055)';
                     day.style.color = 'white';
                 }
-                
+
                 // Cập nhật aria-label
                 const currentLabel = day.getAttribute('aria-label');
                 day.setAttribute('aria-label', `${currentLabel}, có ghi chú`);
             }
-            
+
             // Thêm sự kiện click và keyboard
             const openModalHandler = () => {
                 selectedDate = { day: dayNumber, month: month + 1, year: year };
                 openModal(date, lunarDate);
             };
-            
+
             day.addEventListener('click', openModalHandler);
             day.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -1421,7 +1454,7 @@
                     openModalHandler();
                 }
             });
-            
+
             return day;
         }
 
@@ -1431,21 +1464,21 @@
             const modalDate = document.getElementById('modalDate');
             const modalLunarDate = document.getElementById('modalLunarDate');
             const noteText = document.getElementById('noteText');
-            
+
             const day = date.getDate();
             const month = date.getMonth() + 1;
             const year = date.getFullYear();
-            
+
             modalDate.textContent = `${day}/${month}/${year}`;
             modalLunarDate.textContent = `Âm lịch: ${lunarDate[0]}/${lunarDate[1]}/${lunarDate[2]}${lunarDate[3] ? ' (tháng nhuận)' : ''}`;
-            
+
             const noteKey = `${year}-${month}-${day}`;
             noteText.value = notes[noteKey] || '';
-            
+
             modal.style.display = 'block';
             modal.setAttribute('aria-hidden', 'false');
             noteText.focus();
-            
+
             // Trap focus trong modal
             trapFocus(modal);
         }
@@ -1465,7 +1498,7 @@
             const firstElement = focusableElements[0];
             const lastElement = focusableElements[focusableElements.length - 1];
 
-            element.addEventListener('keydown', function(e) {
+            element.addEventListener('keydown', function (e) {
                 if (e.key === 'Tab') {
                     if (e.shiftKey) {
                         if (document.activeElement === firstElement) {
@@ -1537,59 +1570,284 @@
         }
 
         // Xử lý sự kiện khi trang được tải
-        document.addEventListener('DOMContentLoaded', function() {
+
+        /* ==== Firebase init (điền config của bạn) ==== */
+        const firebaseConfig = {
+            apiKey: "AIzaSyBTchD0ugtuvN6aLOL2kfNX5Hi9tHqnCrY",
+            authDomain: "calendar-webapp-8e147.firebaseapp.com",
+            projectId: "calendar-webapp-8e147",
+            storageBucket: "calendar-webapp-8e147.firebasestorage.app",
+            messagingSenderId: "255749373736",
+            appId: "1:255749373736:web:848575e68681704a2d9a1d",
+            measurementId: "G-EBRYDBEK3Y"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        auth.languageCode = 'vi';
+
+        // Handle redirect result (surface errors if any)
+        auth.getRedirectResult().then(function(res){
+            // If needed, res.user is available after redirect
+        }).catch(function(err){ showAuthError(err && (err.code || err.message)); });
+
+        /* ==== UI Auth helpers ==== */
+        function uiSignedIn(user) {
+            document.getElementById('btnSignIn').hidden = true;
+            document.getElementById('btnSignOut').hidden = false;
+            const nameEl = document.getElementById('userName');
+            const photo = document.getElementById('userPhoto');
+            nameEl.textContent = user.displayName || user.email || 'Đã đăng nhập';
+            if (user.photoURL) { photo.src = user.photoURL; photo.hidden = false; }
+        }
+        function uiSignedOut() {
+            document.getElementById('btnSignIn').hidden = false;
+            document.getElementById('btnSignOut').hidden = true;
+            document.getElementById('userName').textContent = 'Chưa đăng nhập';
+            const photo = document.getElementById('userPhoto');
+            photo.hidden = true;
+        }
+
+        /* ==== Helpers ==== */
+        function noteKeyOf(y, m, d) { return `${y}-${m}-${d}`; }  // m: 1..12
+        function ymFrom(y, m0) { return `${y}-${String(m0 + 1).padStart(2, '0')}`; } // m0: 0..11
+
+        /* ==== Load notes by month (cloud) ==== */
+        async function loadNotesForMonth(year, month0) {
+            if (!auth.currentUser) return;
+            const uid = auth.currentUser.uid;
+            const ym = ymFrom(year, month0);
+            const snap = await db.collection('users').doc(uid)
+                .collection('notes')
+                .where('ym', '==', ym).get();
+            notes = {};
+            snap.forEach(doc => {
+                const n = doc.data();
+                notes[n.key] = n.text;
+            });
+        }
+
+        /* ==== Migrate local notes to cloud on first login ==== */
+        async function migrateLocalNotesToCloud() {
+            if (!auth.currentUser) return;
+            const raw = localStorage.getItem('calendarNotes');
+            if (!raw) return;
+            let local = {};
+            try { local = JSON.parse(raw) || {}; } catch (e) { }
+            const uid = auth.currentUser.uid;
+            const batch = db.batch();
+            Object.entries(local).forEach(([key, text]) => {
+                const [y, m, d] = key.split('-').map(Number);
+                const ref = db.collection('users').doc(uid).collection('notes').doc(key);
+                batch.set(ref, {
+                    key, y, m, d,
+                    ym: `${y}-${String(m).padStart(2, '0')}`,
+                    text, updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    migratedFromLocal: true
+                }, { merge: true });
+            });
+            await batch.commit();
+            localStorage.removeItem('calendarNotes');
+        }
+
+        
+        /* ==== Auth error helpers (visible message for Hosting) ==== */
+        function showAuthError(code) {
+            const box = document.getElementById('authError');
+            if (!box) return;
+            const msg = (function(c){
+                c = String(c || 'unknown');
+                switch (c) {
+                  case 'auth/unauthorized-domain':
+                    return '🌐 Domain này chưa được thêm trong Authentication → Settings → Authorized domains. Hãy thêm chính xác hostname mà bạn đang dùng (bao gồm cả domain Preview nếu dùng).';
+                  case 'auth/invalid-api-key':
+                    return '🔑 apiKey không hợp lệ. Kiểm tra lại firebaseConfig.';
+                  case 'auth/invalid-auth-domain':
+                    return '🏷️ authDomain không đúng với project (vd: your-project.firebaseapp.com).';
+                  case 'auth/operation-not-supported-in-this-environment':
+                    return '🧩 Môi trường không hỗ trợ popup (trình duyệt chặn hoặc chính sách cookie). Đang chuyển sang Redirect...';
+                  case 'auth/popup-blocked':
+                    return '🪟 Popup bị chặn bởi trình duyệt. Sẽ chuyển sang Redirect...';
+                  case 'auth/popup-closed-by-user':
+                    return '🪟 Cửa sổ đăng nhập đã đóng sớm. Sẽ thử Redirect...';
+                  default:
+                    return 'Đăng nhập thất bại: ' + c + ' (xem Console để biết thêm chi tiết)';
+                }
+            })(code);
+            box.textContent = msg;
+            box.hidden = false;
+            console.warn('[AUTH]', code);
+        }
+        function clearAuthError(){
+            const box = document.getElementById('authError');
+            if (box) box.hidden = true;
+        }
+    
+        /* ==== Auth ==== */
+        
+        function signIn() {
+            (async () => {
+                try {
+                    const provider = new firebase.auth.GoogleAuthProvider();
+                    await auth.signInWithPopup(provider);
+                    clearAuthError();
+                } catch (err) {
+                    const code = err && (err.code || err.message) || 'unknown';
+                    showAuthError(code);
+                    if (code === 'auth/operation-not-supported-in-this-environment' ||
+                        code === 'auth/popup-blocked' ||
+                        code === 'auth/popup-closed-by-user') {
+                        try {
+                            const provider = new firebase.auth.GoogleAuthProvider();
+                            await auth.signInWithRedirect(provider);
+                        } catch (e2) {
+                            showAuthError(e2.code || e2.message || 'redirect_failed');
+                        }
+                    }
+                }
+            })();
+        }
+
+        function signOutApp() { auth.signOut(); }
+
+        auth.onAuthStateChanged(async (user) => {
+            if (user) { clearAuthError();
+                uiSignedIn(user);
+                await migrateLocalNotesToCloud();
+                await loadNotesForMonth(currentYear, currentMonth);
+                renderCalendar();
+            } else {
+                uiSignedOut();
+                // restore from local
+                try {
+                    const stored = localStorage.getItem('calendarNotes');
+                    notes = stored ? JSON.parse(stored) : {};
+                } catch { notes = {}; }
+                renderCalendar();
+            }
+        });
+
+        /* ==== Override save/delete note to use cloud if logged in ==== */
+        window.saveNote = async function () {
+            const noteText = document.getElementById('noteText').value.trim();
+            if (!selectedDate || !noteText) return;
+            const key = noteKeyOf(selectedDate.year, selectedDate.month, selectedDate.day);
+            if (auth.currentUser) {
+                const uid = auth.currentUser.uid;
+                await db.collection('users').doc(uid).collection('notes').doc(key).set({
+                    key,
+                    y: selectedDate.year, m: selectedDate.month, d: selectedDate.day,
+                    ym: `${selectedDate.year}-${String(selectedDate.month).padStart(2, '0')}`,
+                    text: noteText,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
+            } else {
+                notes[key] = noteText;
+                saveToLocalStorage('calendarNotes', JSON.stringify(notes));
+            }
+            renderCalendar();
+            closeModal();
+        };
+
+        window.deleteNote = async function () {
+            if (!selectedDate) return;
+            const key = noteKeyOf(selectedDate.year, selectedDate.month, selectedDate.day);
+            if (auth.currentUser) {
+                const uid = auth.currentUser.uid;
+                await db.collection('users').doc(uid).collection('notes').doc(key).delete();
+            } else {
+                delete notes[key];
+                saveToLocalStorage('calendarNotes', JSON.stringify(notes));
+            }
+            renderCalendar();
+            closeModal();
+        };
+
+        /* ==== Async month navigation to sync cloud notes ==== */
+        window.prevMonth = async function () {
+            currentMonth--;
+            if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+            if (auth.currentUser) await loadNotesForMonth(currentYear, currentMonth);
+            renderCalendar();
+        };
+        window.nextMonth = async function () {
+            currentMonth++;
+            if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+            if (auth.currentUser) await loadNotesForMonth(currentYear, currentMonth);
+            renderCalendar();
+        };
+
+        /* ==== Patch initializeDropdowns for async month/year change ==== */
+        const _originalInitializeDropdowns = initializeDropdowns;
+        initializeDropdowns = function () {
+            _originalInitializeDropdowns();
+            const monthSelect = document.getElementById('monthSelect');
+            const yearSelect = document.getElementById('yearSelect');
+            monthSelect.addEventListener('change', async (e) => {
+                currentMonth = parseInt(e.target.value);
+                if (auth.currentUser) await loadNotesForMonth(currentYear, currentMonth);
+                renderCalendar();
+            });
+            yearSelect.addEventListener('change', async (e) => {
+                currentYear = parseInt(e.target.value);
+                if (auth.currentUser) await loadNotesForMonth(currentYear, currentMonth);
+                renderCalendar();
+            });
+        };
+        document.addEventListener('DOMContentLoaded', function () {
             const modal = document.getElementById('noteModal');
             const closeBtn = document.getElementsByClassName('close')[0];
-            
+
             closeBtn.onclick = closeModal;
-            
+
             // Đóng modal khi click outside
-            window.onclick = function(event) {
+            window.onclick = function (event) {
                 if (event.target === modal) {
                     closeModal();
                 }
             }
-            
+
             // Xử lý phím tắt trong textarea
-            document.getElementById('noteText').addEventListener('keydown', function(e) {
+            document.getElementById('noteText').addEventListener('keydown', function (e) {
                 if (e.key === 'Enter' && e.ctrlKey) {
                     e.preventDefault();
                     saveNote();
                 }
             });
-            
+
             // Khởi tạo ứng dụng
             initializeDropdowns();
-            
+
             // Kiểm tra auto theme khi khởi động
             if (isAutoTheme) {
                 checkAndSetAutoTheme();
             } else {
                 changeTheme(currentTheme);
             }
-            
+
             renderCalendar();
-            
+
             // Thiết lập kiểm tra auto theme định kỳ
             setInterval(() => {
                 if (isAutoTheme) {
                     checkAndSetAutoTheme();
                 }
             }, 3600000); // Mỗi giờ
-            
+
             // Kiểm tra khi chuyển ngày
             const now = new Date();
             const tomorrow = new Date(now);
             tomorrow.setDate(tomorrow.getDate() + 1);
             tomorrow.setHours(0, 0, 0, 0);
-            
+
             const msUntilMidnight = tomorrow.getTime() - now.getTime();
-            
+
             setTimeout(() => {
                 if (isAutoTheme) {
                     checkAndSetAutoTheme();
                 }
-                
+
                 // Kiểm tra hàng ngày
                 setInterval(() => {
                     if (isAutoTheme) {
@@ -1600,4 +1858,5 @@
         });
     </script>
 </body>
+
 </html>
