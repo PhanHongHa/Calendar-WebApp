@@ -1585,6 +1585,7 @@
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
+        firebase.firestore().enablePersistence({ synchronizeTabs: true }).catch(() => {});
         auth.languageCode = 'vi';
 
         // Handle redirect result (surface errors if any)
