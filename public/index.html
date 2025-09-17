@@ -915,7 +915,6 @@
     <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore-compat.js"></script>
 
-
     <script>
         // Dữ liệu và biến toàn cục
         let currentMonth = new Date().getMonth();
@@ -1591,7 +1590,7 @@
         // Handle redirect result (surface errors if any)
         auth.getRedirectResult().then(function(res){
             // If needed, res.user is available after redirect
-        }).catch(function(err){ showAuthError(err && (err.code || err.message)); });
+        }).catch(function(err){ /* showAuthError removed */ });
 
         /* ==== UI Auth helpers ==== */
         function uiSignedIn(user) {
@@ -1653,37 +1652,6 @@
         }
 
         
-        /* ==== Auth error helpers (visible message for Hosting) ==== */
-        function showAuthError(code) {
-            const box = document.getElementById('authError');
-            if (!box) return;
-            const msg = (function(c){
-                c = String(c || 'unknown');
-                switch (c) {
-                  case 'auth/unauthorized-domain':
-                    return '🌐 Domain này chưa được thêm trong Authentication → Settings → Authorized domains. Hãy thêm chính xác hostname mà bạn đang dùng (bao gồm cả domain Preview nếu dùng).';
-                  case 'auth/invalid-api-key':
-                    return '🔑 apiKey không hợp lệ. Kiểm tra lại firebaseConfig.';
-                  case 'auth/invalid-auth-domain':
-                    return '🏷️ authDomain không đúng với project (vd: your-project.firebaseapp.com).';
-                  case 'auth/operation-not-supported-in-this-environment':
-                    return '🧩 Môi trường không hỗ trợ popup (trình duyệt chặn hoặc chính sách cookie). Đang chuyển sang Redirect...';
-                  case 'auth/popup-blocked':
-                    return '🪟 Popup bị chặn bởi trình duyệt. Sẽ chuyển sang Redirect...';
-                  case 'auth/popup-closed-by-user':
-                    return '🪟 Cửa sổ đăng nhập đã đóng sớm. Sẽ thử Redirect...';
-                  default:
-                    return 'Đăng nhập thất bại: ' + c + ' (xem Console để biết thêm chi tiết)';
-                }
-            })(code);
-            box.textContent = msg;
-            box.hidden = false;
-            console.warn('[AUTH]', code);
-        }
-        function clearAuthError(){
-            const box = document.getElementById('authError');
-            if (box) box.hidden = true;
-        }
     
         /* ==== Auth ==== */
         
@@ -1695,7 +1663,7 @@
                     clearAuthError();
                 } catch (err) {
                     const code = err && (err.code || err.message) || 'unknown';
-                    showAuthError(code);
+                    /* showAuthError removed */
                     if (code === 'auth/operation-not-supported-in-this-environment' ||
                         code === 'auth/popup-blocked' ||
                         code === 'auth/popup-closed-by-user') {
@@ -1703,7 +1671,7 @@
                             const provider = new firebase.auth.GoogleAuthProvider();
                             await auth.signInWithRedirect(provider);
                         } catch (e2) {
-                            showAuthError(e2.code || e2.message || 'redirect_failed');
+                            /* showAuthError removed */
                         }
                     }
                 }
@@ -1743,7 +1711,8 @@
                     text: noteText,
                     updatedAt: firebase.firestore.FieldValue.serverTimestamp()
                 }, { merge: true });
-            } else {
+                            notes[key] = noteText;
+} else {
                 notes[key] = noteText;
                 saveToLocalStorage('calendarNotes', JSON.stringify(notes));
             }
@@ -1757,7 +1726,8 @@
             if (auth.currentUser) {
                 const uid = auth.currentUser.uid;
                 await db.collection('users').doc(uid).collection('notes').doc(key).delete();
-            } else {
+                            delete notes[key];
+} else {
                 delete notes[key];
                 saveToLocalStorage('calendarNotes', JSON.stringify(notes));
             }
