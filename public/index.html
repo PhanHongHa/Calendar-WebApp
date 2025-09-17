@@ -1590,7 +1590,7 @@
         // Handle redirect result (surface errors if any)
         auth.getRedirectResult().then(function(res){
             // If needed, res.user is available after redirect
-        }).catch(function(err){ /* showAuthError removed */ });
+        }).catch(function(err){ /*  removed */ });
 
         /* ==== UI Auth helpers ==== */
         function uiSignedIn(user) {
@@ -1652,6 +1652,11 @@
         }
 
         
+        
+function clearAuthError(){
+            const box = document.getElementById('authError');
+            if (box) box.hidden = true;
+        }
     
         /* ==== Auth ==== */
         
@@ -1663,7 +1668,7 @@
                     clearAuthError();
                 } catch (err) {
                     const code = err && (err.code || err.message) || 'unknown';
-                    /* showAuthError removed */
+                    /*  removed */
                     if (code === 'auth/operation-not-supported-in-this-environment' ||
                         code === 'auth/popup-blocked' ||
                         code === 'auth/popup-closed-by-user') {
@@ -1671,7 +1676,7 @@
                             const provider = new firebase.auth.GoogleAuthProvider();
                             await auth.signInWithRedirect(provider);
                         } catch (e2) {
-                            /* showAuthError removed */
+                            /*  removed */
                         }
                     }
                 }
