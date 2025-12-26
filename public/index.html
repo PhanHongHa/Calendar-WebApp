@@ -930,23 +930,30 @@
         }
 
         // Save custom themes to localStorage and Firestore
+        // Save custom themes to localStorage and Firestore
         async function saveCustomThemes() {
             // 1. Save Local
             try {
                 localStorage.setItem('customThemes', JSON.stringify(customThemes));
+                console.log('Saved custom themes to localStorage');
             } catch (e) {
-                console.warn('Không thể lưu custom themes:', e);
+                console.warn('Không thể lưu custom themes local:', e);
             }
 
             // 2. Save Cloud (if logged in)
-            if (auth.currentUser) {
+            const user = firebase.auth().currentUser;
+            if (user) {
                 try {
-                    await db.collection('users').doc(auth.currentUser.uid).set({
+                    console.log('Saving custom themes to Firestore for user:', user.uid);
+                    await db.collection('users').doc(user.uid).set({
                         customThemes: customThemes
                     }, { merge: true });
+                    console.log('Synced custom themes to Cloud successfully.');
                 } catch (e) {
                     console.error('Lỗi khi lưu theme lên Cloud:', e);
                 }
+            } else {
+                console.log('User not logged in, skipping cloud save.');
             }
         }
 
