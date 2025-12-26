@@ -37,6 +37,9 @@
             --holiday-gradient-end: #e84393;
             --holiday-color: white;
             --lunar-date-color: #e17055;
+            --note-gradient-start: #fdcb6e;
+            --note-gradient-end: #e17055;
+            --note-color: #ffffff;
             --modal-bg: white;
             --modal-color: #2d3436;
             --modal-input-bg: white;
@@ -480,7 +483,166 @@
         }
 
         .auth-error {margin: 12px auto 0; max-width: 980px; padding: .75rem 1rem; border: 1px solid #ff7675; background: #ffeaea; color: #c0392b; border-radius: .6rem; font-size: .95rem;}
-      
+
+        /* Custom Theme Modal Styles */
+        .theme-custom-modal {
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 2% auto;
+        }
+
+        /* Custom scrollbar for modal */
+        .modal-content::-webkit-scrollbar,
+        .theme-custom-modal::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-content::-webkit-scrollbar-track,
+        .theme-custom-modal::-webkit-scrollbar-track {
+            background: var(--modal-input-bg);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb,
+        .theme-custom-modal::-webkit-scrollbar-thumb {
+            background: var(--modal-input-border);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover,
+        .theme-custom-modal::-webkit-scrollbar-thumb:hover {
+            background: #74b9ff;
+        }
+
+        .theme-preview {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px solid var(--modal-input-border);
+            position: sticky;
+            top: 10px;
+            z-index: 10;
+            overflow: hidden;
+            background: var(--modal-bg);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-preview-header {
+            height: 40px;
+            background: linear-gradient(135deg, var(--preview-header-start, #667eea), var(--preview-header-end, #764ba2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .theme-preview-body {
+            height: 110px;
+            background: var(--preview-container-bg, white);
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            padding: 5px;
+        }
+
+        .theme-preview-day {
+            background: var(--preview-day-bg, white);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        .theme-preview-day.today {
+            background: linear-gradient(135deg, var(--preview-today-start, #00b894), var(--preview-today-end, #00a085));
+            color: white;
+        }
+
+        .theme-preview-day.holiday {
+            background: linear-gradient(135deg, var(--preview-holiday-start, #fd79a8), var(--preview-holiday-end, #e84393));
+            color: white;
+        }
+
+        .color-picker-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .color-picker-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .color-picker-item label {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--modal-color);
+        }
+
+        .color-picker-item input[type="color"] {
+            width: 100%;
+            height: 40px;
+            border: 2px solid var(--modal-input-border);
+            border-radius: 8px;
+            cursor: pointer;
+            background: none;
+        }
+
+        .color-picker-item input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid var(--modal-input-border);
+            border-radius: 8px;
+            font-size: 14px;
+            background: var(--modal-input-bg);
+            color: var(--modal-input-color);
+        }
+
+        .custom-themes-list {
+            margin: 20px 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .custom-theme-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            background: var(--modal-input-bg);
+            border: 2px solid var(--modal-input-border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .custom-theme-item:hover {
+            background: var(--day-hover-bg);
+            transform: translateX(5px);
+        }
+
+        .custom-theme-item.active {
+            border-color: #74b9ff;
+            background: rgba(116, 185, 255, 0.1);
+        }
+
+        .custom-theme-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .custom-theme-actions button {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
 
         select {
             background: white;
@@ -622,6 +784,13 @@
             overflow: hidden;
         }
 
+        .day.has-note:not(.holiday):not(.today) {
+            background: linear-gradient(135deg,
+                    var(--note-gradient-start, var(--holiday-gradient-start, #fdcb6e)),
+                    var(--note-gradient-end, var(--holiday-gradient-end, #e17055)));
+            color: var(--note-color, var(--holiday-color, #ffffff));
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -637,11 +806,13 @@
         .modal-content {
             background-color: var(--modal-bg);
             color: var(--modal-color);
-            margin: 15% auto;
+            margin: 5% auto;
             padding: 30px;
             border-radius: 20px;
             width: 90%;
             max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             animation: modalSlideIn 0.3s ease;
             transition: all 0.3s ease;
@@ -802,6 +973,34 @@
             .lunar-date {
                 font-size: 10px;
             }
+
+            .modal-content {
+                margin: 10px auto;
+                padding: 20px;
+                max-height: 95vh;
+                width: 95%;
+            }
+
+            .theme-custom-modal {
+                max-width: 95%;
+                margin: 10px auto;
+                padding: 15px;
+            }
+
+            .color-picker-group {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .custom-themes-list {
+                max-height: 150px;
+            }
+
+            .theme-preview {
+                position: sticky;
+                top: 5px;
+                margin: 10px 0;
+            }
         }
 
         /* Reduced motion for accessibility */
@@ -843,6 +1042,9 @@
                 </div>
                 <div class="control-group">
                     <button id="autoThemeBtn" onclick="toggleAutoTheme()" aria-pressed="false">Tự động</button>
+                </div>
+                <div class="control-group">
+                    <button onclick="openCustomThemeModal()">Tùy chỉnh Theme</button>
                 </div>
                 <div class="control-group">
                     <label for="monthSelect">Tháng:</label>
@@ -910,6 +1112,121 @@
         </div>
     </div>
 
+    <!-- Custom Theme Modal -->
+    <div id="customThemeModal" class="modal" role="dialog" aria-labelledby="custom-theme-title" aria-hidden="true">
+        <div class="modal-content theme-custom-modal">
+            <span class="close" onclick="closeCustomThemeModal()" aria-label="Đóng">&times;</span>
+            <h2 id="custom-theme-title">Tùy chỉnh Theme</h2>
+            
+            <div class="custom-themes-list" id="customThemesList">
+                <h3>Theme đã lưu:</h3>
+                <div id="savedThemesContainer"></div>
+            </div>
+
+            <h3>Tạo theme mới:</h3>
+            <label for="customThemeName">Tên theme:</label>
+            <input type="text" id="customThemeName" placeholder="Nhập tên theme..." maxlength="50">
+            
+            <div class="theme-preview" id="themePreview">
+                <div class="theme-preview-header">Preview Header</div>
+                <div class="theme-preview-body">
+                    <div class="theme-preview-day">1</div>
+                    <div class="theme-preview-day">2</div>
+                    <div class="theme-preview-day today">3</div>
+                    <div class="theme-preview-day holiday">4</div>
+                    <div class="theme-preview-day">5</div>
+                    <div class="theme-preview-day">6</div>
+                    <div class="theme-preview-day">7</div>
+                </div>
+            </div>
+
+            <div class="color-picker-group">
+                <div class="color-picker-item">
+                    <label>Background Start:</label>
+                    <input type="color" id="colorBgStart" value="#667eea">
+                    <input type="text" id="colorBgStartText" value="#667eea" placeholder="#667eea">
+                </div>
+                <div class="color-picker-item">
+                    <label>Background End:</label>
+                    <input type="color" id="colorBgEnd" value="#764ba2">
+                    <input type="text" id="colorBgEndText" value="#764ba2" placeholder="#764ba2">
+                </div>
+                <div class="color-picker-item">
+                    <label>Container Background:</label>
+                    <input type="color" id="colorContainerBg" value="#ffffff">
+                    <input type="text" id="colorContainerBgText" value="#ffffff" placeholder="#ffffff">
+                </div>
+                <div class="color-picker-item">
+                    <label>Container Text:</label>
+                    <input type="color" id="colorContainerText" value="#2d3436">
+                    <input type="text" id="colorContainerTextText" value="#2d3436" placeholder="#2d3436">
+                </div>
+                <div class="color-picker-item">
+                    <label>Header Start:</label>
+                    <input type="color" id="colorHeaderStart" value="#ff6b6b">
+                    <input type="text" id="colorHeaderStartText" value="#ff6b6b" placeholder="#ff6b6b">
+                </div>
+                <div class="color-picker-item">
+                    <label>Header End:</label>
+                    <input type="color" id="colorHeaderEnd" value="#ee5a24">
+                    <input type="text" id="colorHeaderEndText" value="#ee5a24" placeholder="#ee5a24">
+                </div>
+                <div class="color-picker-item">
+                    <label>Header Text:</label>
+                    <input type="color" id="colorHeaderText" value="#ffffff">
+                    <input type="text" id="colorHeaderTextText" value="#ffffff" placeholder="#ffffff">
+                </div>
+                <div class="color-picker-item">
+                    <label>Day Background:</label>
+                    <input type="color" id="colorDayBg" value="#ffffff">
+                    <input type="text" id="colorDayBgText" value="#ffffff" placeholder="#ffffff">
+                </div>
+                <div class="color-picker-item">
+                    <label>Day Text:</label>
+                    <input type="color" id="colorDayText" value="#2d3436">
+                    <input type="text" id="colorDayTextText" value="#2d3436" placeholder="#2d3436">
+                </div>
+                <div class="color-picker-item">
+                    <label>Today Start:</label>
+                    <input type="color" id="colorTodayStart" value="#00b894">
+                    <input type="text" id="colorTodayStartText" value="#00b894" placeholder="#00b894">
+                </div>
+                <div class="color-picker-item">
+                    <label>Today End:</label>
+                    <input type="color" id="colorTodayEnd" value="#00a085">
+                    <input type="text" id="colorTodayEndText" value="#00a085" placeholder="#00a085">
+                </div>
+                <div class="color-picker-item">
+                    <label>Today Text:</label>
+                    <input type="color" id="colorTodayText" value="#ffffff">
+                    <input type="text" id="colorTodayTextText" value="#ffffff" placeholder="#ffffff">
+                </div>
+                <div class="color-picker-item">
+                    <label>Holiday Start:</label>
+                    <input type="color" id="colorHolidayStart" value="#fd79a8">
+                    <input type="text" id="colorHolidayStartText" value="#fd79a8" placeholder="#fd79a8">
+                </div>
+                <div class="color-picker-item">
+                    <label>Holiday End:</label>
+                    <input type="color" id="colorHolidayEnd" value="#e84393">
+                    <input type="text" id="colorHolidayEndText" value="#e84393" placeholder="#e84393">
+                </div>
+                <div class="color-picker-item">
+                    <label>Holiday Text:</label>
+                    <input type="color" id="colorHolidayText" value="#ffffff">
+                    <input type="text" id="colorHolidayTextText" value="#ffffff" placeholder="#ffffff">
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button onclick="saveCustomTheme()">Lưu Theme</button>
+                <button onclick="applyCustomThemePreview()">Xem trước</button>
+                <button onclick="resetCustomThemeColors()">Đặt lại</button>
+                <button onclick="closeCustomThemeModal()">Đóng</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Firebase SDK (compat) -->
     <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-auth-compat.js"></script>
@@ -949,6 +1266,35 @@
         } catch (e) {
             console.warn('Không thể tải cài đặt từ localStorage:', e);
         }
+
+        // Custom Themes Management
+        let customThemes = {};
+        let editingThemeId = null;
+
+        // Load custom themes from localStorage
+        function loadCustomThemes() {
+            try {
+                const stored = localStorage.getItem('customThemes');
+                if (stored) {
+                    customThemes = JSON.parse(stored);
+                }
+            } catch (e) {
+                console.warn('Không thể tải custom themes:', e);
+                customThemes = {};
+            }
+        }
+
+        // Save custom themes to localStorage
+        function saveCustomThemes() {
+            try {
+                localStorage.setItem('customThemes', JSON.stringify(customThemes));
+            } catch (e) {
+                console.warn('Không thể lưu custom themes:', e);
+            }
+        }
+
+        // Load custom themes on init
+        loadCustomThemes();
 
         // Tên tháng và thứ
         const monthNames = [
@@ -1243,7 +1589,9 @@
 
             monthSelect.value = currentMonth;
             yearSelect.value = currentYear;
-            themeSelect.value = currentTheme;
+            
+            // Load custom themes vào dropdown
+            updateThemeDropdown();
 
             updateAutoThemeButton();
 
@@ -1261,6 +1609,49 @@
             themeSelect.addEventListener('change', (e) => {
                 changeTheme(e.target.value);
             });
+
+            // Setup color picker sync và preview
+            setupColorPickers();
+        }
+
+        function setupColorPickers() {
+            const colorPairs = [
+                ['colorBgStart', 'colorBgStartText'],
+                ['colorBgEnd', 'colorBgEndText'],
+                ['colorContainerBg', 'colorContainerBgText'],
+                ['colorContainerText', 'colorContainerTextText'],
+                ['colorHeaderStart', 'colorHeaderStartText'],
+                ['colorHeaderEnd', 'colorHeaderEndText'],
+                ['colorHeaderText', 'colorHeaderTextText'],
+                ['colorDayBg', 'colorDayBgText'],
+                ['colorDayText', 'colorDayTextText'],
+                ['colorTodayStart', 'colorTodayStartText'],
+                ['colorTodayEnd', 'colorTodayEndText'],
+                ['colorTodayText', 'colorTodayTextText'],
+                ['colorHolidayStart', 'colorHolidayStartText'],
+                ['colorHolidayEnd', 'colorHolidayEndText'],
+                ['colorHolidayText', 'colorHolidayTextText']
+            ];
+
+            colorPairs.forEach(([colorId, textId]) => {
+                const colorInput = document.getElementById(colorId);
+                const textInput = document.getElementById(textId);
+                
+                if (colorInput && textInput) {
+                    colorInput.addEventListener('input', (e) => {
+                        textInput.value = e.target.value;
+                        updateThemePreview();
+                    });
+                    
+                    textInput.addEventListener('input', (e) => {
+                        const value = e.target.value;
+                        if (/^#[0-9A-Fa-f]{6}$/.test(value)) {
+                            colorInput.value = value;
+                            updateThemePreview();
+                        }
+                    });
+                }
+            });
         }
 
         // Hàm cập nhật nút auto theme
@@ -1277,11 +1668,19 @@
 
         // Hàm thay đổi theme
         function changeTheme(theme, isAutomatic = false) {
-            // Xóa class theme cũ
+            // Xóa class theme cũ và custom theme style
             document.body.classList.forEach(c => { if (c.startsWith('theme-')) document.body.classList.remove(c); });
+            const existingStyle = document.getElementById('custom-theme-style');
+            if (existingStyle) existingStyle.remove();
 
             currentTheme = theme;
-            document.body.classList.add(`theme-${theme}`);
+
+            // Kiểm tra nếu là custom theme
+            if (theme.startsWith('custom-') && customThemes[theme]) {
+                applyCustomTheme(customThemes[theme]);
+            } else {
+                document.body.classList.add(`theme-${theme}`);
+            }
 
             if (!isAutomatic) {
                 saveToLocalStorage('calendarTheme', theme);
@@ -1298,6 +1697,276 @@
             if (themeSelect) {
                 themeSelect.value = theme;
             }
+        }
+
+        // Áp dụng custom theme
+        function applyCustomTheme(themeData) {
+            const style = document.createElement('style');
+            style.id = 'custom-theme-style';
+            style.textContent = `
+                :root {
+                    --bg-gradient-start: ${themeData.bgStart};
+                    --bg-gradient-end: ${themeData.bgEnd};
+                    --container-bg: ${themeData.containerBg};
+                    --container-color: ${themeData.containerColor};
+                    --header-gradient-start: ${themeData.headerStart};
+                    --header-gradient-end: ${themeData.headerEnd};
+                    --header-color: ${themeData.headerColor};
+                    --day-bg: ${themeData.dayBg};
+                    --day-color: ${themeData.dayColor};
+                    --today-gradient-start: ${themeData.todayStart};
+                    --today-gradient-end: ${themeData.todayEnd};
+                    --today-color: ${themeData.todayColor};
+                    --holiday-gradient-start: ${themeData.holidayStart};
+                    --holiday-gradient-end: ${themeData.holidayEnd};
+                    --holiday-color: ${themeData.holidayColor};
+                    --note-gradient-start: ${themeData.holidayStart};
+                    --note-gradient-end: ${themeData.holidayEnd};
+                    --note-color: ${themeData.holidayColor};
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Custom Theme Functions
+        function openCustomThemeModal() {
+            const modal = document.getElementById('customThemeModal');
+            const modalContent = modal.querySelector('.modal-content');
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            renderSavedThemes();
+            editingThemeId = null;
+            document.getElementById('customThemeName').value = '';
+            resetCustomThemeColors();
+            // Scroll to top of modal content
+            if (modalContent) {
+                modalContent.scrollTop = 0;
+            }
+        }
+
+        function closeCustomThemeModal() {
+            const modal = document.getElementById('customThemeModal');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        function renderSavedThemes() {
+            const container = document.getElementById('savedThemesContainer');
+            container.innerHTML = '';
+            
+            if (Object.keys(customThemes).length === 0) {
+                container.innerHTML = '<p style="opacity:0.7;font-style:italic;">Chưa có theme nào được lưu</p>';
+                return;
+            }
+
+            Object.entries(customThemes).forEach(([id, theme]) => {
+                const item = document.createElement('div');
+                item.className = 'custom-theme-item';
+                if (currentTheme === id) item.classList.add('active');
+                
+                item.innerHTML = `
+                    <span>${theme.name}</span>
+                    <div class="custom-theme-actions">
+                        <button onclick="loadCustomTheme('${id}')">Tải</button>
+                        <button onclick="editCustomTheme('${id}')">Sửa</button>
+                        <button onclick="deleteCustomTheme('${id}')">Xóa</button>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function loadCustomTheme(id) {
+            if (customThemes[id]) {
+                changeTheme(id);
+                closeCustomThemeModal();
+            }
+        }
+
+        function editCustomTheme(id) {
+            if (!customThemes[id]) return;
+            const theme = customThemes[id];
+            editingThemeId = id;
+            
+            document.getElementById('customThemeName').value = theme.name;
+            document.getElementById('colorBgStart').value = theme.bgStart;
+            document.getElementById('colorBgStartText').value = theme.bgStart;
+            document.getElementById('colorBgEnd').value = theme.bgEnd;
+            document.getElementById('colorBgEndText').value = theme.bgEnd;
+            document.getElementById('colorContainerBg').value = theme.containerBg;
+            document.getElementById('colorContainerBgText').value = theme.containerBg;
+            document.getElementById('colorContainerText').value = theme.containerColor;
+            document.getElementById('colorContainerTextText').value = theme.containerColor;
+            document.getElementById('colorHeaderStart').value = theme.headerStart;
+            document.getElementById('colorHeaderStartText').value = theme.headerStart;
+            document.getElementById('colorHeaderEnd').value = theme.headerEnd;
+            document.getElementById('colorHeaderEndText').value = theme.headerEnd;
+            document.getElementById('colorHeaderText').value = theme.headerColor;
+            document.getElementById('colorHeaderTextText').value = theme.headerColor;
+            document.getElementById('colorDayBg').value = theme.dayBg;
+            document.getElementById('colorDayBgText').value = theme.dayBg;
+            document.getElementById('colorDayText').value = theme.dayColor;
+            document.getElementById('colorDayTextText').value = theme.dayColor;
+            document.getElementById('colorTodayStart').value = theme.todayStart;
+            document.getElementById('colorTodayStartText').value = theme.todayStart;
+            document.getElementById('colorTodayEnd').value = theme.todayEnd;
+            document.getElementById('colorTodayEndText').value = theme.todayEnd;
+            document.getElementById('colorTodayText').value = theme.todayColor;
+            document.getElementById('colorTodayTextText').value = theme.todayColor;
+            document.getElementById('colorHolidayStart').value = theme.holidayStart;
+            document.getElementById('colorHolidayStartText').value = theme.holidayStart;
+            document.getElementById('colorHolidayEnd').value = theme.holidayEnd;
+            document.getElementById('colorHolidayEndText').value = theme.holidayEnd;
+            document.getElementById('colorHolidayText').value = theme.holidayColor;
+            document.getElementById('colorHolidayTextText').value = theme.holidayColor;
+            
+            updateThemePreview();
+        }
+
+        function deleteCustomTheme(id) {
+            if (confirm(`Bạn có chắc muốn xóa theme "${customThemes[id].name}"?`)) {
+                delete customThemes[id];
+                saveCustomThemes();
+                renderSavedThemes();
+                updateThemeDropdown();
+                
+                if (currentTheme === id) {
+                    changeTheme('default');
+                }
+            }
+        }
+
+        function resetCustomThemeColors() {
+            document.getElementById('colorBgStart').value = '#667eea';
+            document.getElementById('colorBgStartText').value = '#667eea';
+            document.getElementById('colorBgEnd').value = '#764ba2';
+            document.getElementById('colorBgEndText').value = '#764ba2';
+            document.getElementById('colorContainerBg').value = '#ffffff';
+            document.getElementById('colorContainerBgText').value = '#ffffff';
+            document.getElementById('colorContainerText').value = '#2d3436';
+            document.getElementById('colorContainerTextText').value = '#2d3436';
+            document.getElementById('colorHeaderStart').value = '#ff6b6b';
+            document.getElementById('colorHeaderStartText').value = '#ff6b6b';
+            document.getElementById('colorHeaderEnd').value = '#ee5a24';
+            document.getElementById('colorHeaderEndText').value = '#ee5a24';
+            document.getElementById('colorHeaderText').value = '#ffffff';
+            document.getElementById('colorHeaderTextText').value = '#ffffff';
+            document.getElementById('colorDayBg').value = '#ffffff';
+            document.getElementById('colorDayBgText').value = '#ffffff';
+            document.getElementById('colorDayText').value = '#2d3436';
+            document.getElementById('colorDayTextText').value = '#2d3436';
+            document.getElementById('colorTodayStart').value = '#00b894';
+            document.getElementById('colorTodayStartText').value = '#00b894';
+            document.getElementById('colorTodayEnd').value = '#00a085';
+            document.getElementById('colorTodayEndText').value = '#00a085';
+            document.getElementById('colorTodayText').value = '#ffffff';
+            document.getElementById('colorTodayTextText').value = '#ffffff';
+            document.getElementById('colorHolidayStart').value = '#fd79a8';
+            document.getElementById('colorHolidayStartText').value = '#fd79a8';
+            document.getElementById('colorHolidayEnd').value = '#e84393';
+            document.getElementById('colorHolidayEndText').value = '#e84393';
+            document.getElementById('colorHolidayText').value = '#ffffff';
+            document.getElementById('colorHolidayTextText').value = '#ffffff';
+            updateThemePreview();
+        }
+
+        function updateThemePreview() {
+            const preview = document.getElementById('themePreview');
+            const bgStart = document.getElementById('colorBgStart').value;
+            const bgEnd = document.getElementById('colorBgEnd').value;
+            const containerBg = document.getElementById('colorContainerBg').value;
+            const headerStart = document.getElementById('colorHeaderStart').value;
+            const headerEnd = document.getElementById('colorHeaderEnd').value;
+            const dayBg = document.getElementById('colorDayBg').value;
+            const todayStart = document.getElementById('colorTodayStart').value;
+            const todayEnd = document.getElementById('colorTodayEnd').value;
+            const holidayStart = document.getElementById('colorHolidayStart').value;
+            const holidayEnd = document.getElementById('colorHolidayEnd').value;
+
+            preview.style.background = `linear-gradient(135deg, ${bgStart}, ${bgEnd})`;
+            const previewBody = preview.querySelector('.theme-preview-body');
+            previewBody.style.background = containerBg;
+            const previewHeader = preview.querySelector('.theme-preview-header');
+            previewHeader.style.background = `linear-gradient(135deg, ${headerStart}, ${headerEnd})`;
+            
+            const days = previewBody.querySelectorAll('.theme-preview-day');
+            days.forEach((day, index) => {
+                if (day.classList.contains('today')) {
+                    day.style.background = `linear-gradient(135deg, ${todayStart}, ${todayEnd})`;
+                } else if (day.classList.contains('holiday')) {
+                    day.style.background = `linear-gradient(135deg, ${holidayStart}, ${holidayEnd})`;
+                } else {
+                    day.style.background = dayBg;
+                }
+            });
+        }
+
+        function applyCustomThemePreview() {
+            const themeData = getThemeDataFromInputs();
+            applyCustomTheme(themeData);
+        }
+
+        function getThemeDataFromInputs() {
+            return {
+                bgStart: document.getElementById('colorBgStart').value,
+                bgEnd: document.getElementById('colorBgEnd').value,
+                containerBg: document.getElementById('colorContainerBg').value,
+                containerColor: document.getElementById('colorContainerText').value,
+                headerStart: document.getElementById('colorHeaderStart').value,
+                headerEnd: document.getElementById('colorHeaderEnd').value,
+                headerColor: document.getElementById('colorHeaderText').value,
+                dayBg: document.getElementById('colorDayBg').value,
+                dayColor: document.getElementById('colorDayText').value,
+                todayStart: document.getElementById('colorTodayStart').value,
+                todayEnd: document.getElementById('colorTodayEnd').value,
+                todayColor: document.getElementById('colorTodayText').value,
+                holidayStart: document.getElementById('colorHolidayStart').value,
+                holidayEnd: document.getElementById('colorHolidayEnd').value,
+                holidayColor: document.getElementById('colorHolidayText').value
+            };
+        }
+
+        function saveCustomTheme() {
+            const name = document.getElementById('customThemeName').value.trim();
+            if (!name) {
+                alert('Vui lòng nhập tên theme!');
+                return;
+            }
+
+            const themeData = {
+                name: name,
+                ...getThemeDataFromInputs()
+            };
+
+            const id = editingThemeId || `custom-${Date.now()}`;
+            customThemes[id] = themeData;
+            saveCustomThemes();
+            
+            renderSavedThemes();
+            updateThemeDropdown();
+            
+            document.getElementById('customThemeName').value = '';
+            editingThemeId = null;
+            
+            alert('Đã lưu theme thành công!');
+        }
+
+        function updateThemeDropdown() {
+            const themeSelect = document.getElementById('themeSelect');
+            // Xóa các custom theme cũ
+            const customOptions = themeSelect.querySelectorAll('option[value^="custom-"]');
+            customOptions.forEach(opt => opt.remove());
+            
+            // Thêm các custom theme mới
+            Object.entries(customThemes).forEach(([id, theme]) => {
+                const option = document.createElement('option');
+                option.value = id;
+                option.textContent = `⭐ ${theme.name}`;
+                themeSelect.appendChild(option);
+            });
+            
+            // Đặt lại giá trị hiện tại
+            themeSelect.value = currentTheme;
         }
 
         // Hàm render lịch
@@ -1429,10 +2098,9 @@
                 noteDiv.textContent = notes[noteKey];
                 day.appendChild(noteDiv);
 
-                // Thêm màu nền cho ngày có ghi chú
+                // Thêm class để styling theo theme
                 if (!day.classList.contains('holiday') && !day.classList.contains('today')) {
-                    day.style.background = 'linear-gradient(135deg, #fdcb6e, #e17055)';
-                    day.style.color = 'white';
+                    day.classList.add('has-note');
                 }
 
                 // Cập nhật aria-label
@@ -1773,6 +2441,7 @@ function clearAuthError(){
         };
         document.addEventListener('DOMContentLoaded', function () {
             const modal = document.getElementById('noteModal');
+            const customThemeModal = document.getElementById('customThemeModal');
             const closeBtn = document.getElementsByClassName('close')[0];
 
             closeBtn.onclick = closeModal;
@@ -1782,6 +2451,9 @@ function clearAuthError(){
                 if (event.target === modal) {
                     closeModal();
                 }
+                if (event.target === customThemeModal) {
+                    closeCustomThemeModal();
+                }
             }
 
             // Xử lý phím tắt trong textarea
@@ -1789,6 +2461,13 @@ function clearAuthError(){
                 if (e.key === 'Enter' && e.ctrlKey) {
                     e.preventDefault();
                     saveNote();
+                }
+            });
+
+            // Xử lý Escape để đóng custom theme modal
+            customThemeModal.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    closeCustomThemeModal();
                 }
             });
 
