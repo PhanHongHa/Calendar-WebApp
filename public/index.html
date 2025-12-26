@@ -1511,14 +1511,14 @@
 
             const id = editingThemeId || `custom-${Date.now()}`;
             customThemes[id] = themeData;
-            saveCustomThemes();
 
-            renderSavedThemes();
-
-            document.getElementById('customThemeName').value = '';
-            editingThemeId = null;
-
-            alert('Đã lưu theme thành công!');
+            // Gọi hàm async để lưu
+            saveCustomThemes().then(() => {
+                renderSavedThemes();
+                document.getElementById('customThemeName').value = '';
+                editingThemeId = null;
+                alert('Đã lưu theme thành công!');
+            });
         }
 
 
