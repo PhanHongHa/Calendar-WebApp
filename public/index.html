@@ -1351,12 +1351,14 @@
         function deleteCustomTheme(id) {
             if (confirm(`Bạn có chắc muốn xóa theme "${customThemes[id].name}"?`)) {
                 delete customThemes[id];
-                saveCustomThemes();
-                renderSavedThemes();
 
-                if (currentTheme === id) {
-                    changeTheme('default');
-                }
+                // Gọi hàm async để lưu
+                saveCustomThemes().then(() => {
+                    renderSavedThemes();
+                    if (currentTheme === id) {
+                        changeTheme('default');
+                    }
+                });
             }
         }
 
