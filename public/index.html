@@ -61,7 +61,10 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%),
+                url('images/tet-background.png') no-repeat center center fixed;
+            background-size: cover;
+            background-blend-mode: overlay;
             min-height: 100vh;
             padding: 20px;
             transition: all 0.3s ease;
