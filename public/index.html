@@ -98,10 +98,37 @@
 
         .controls {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            flex-direction: column;
+            gap: 15px;
             margin-top: 20px;
+        }
+
+        .controls-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
             flex-wrap: wrap;
+        }
+
+        .controls-bottom {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .controls-left {
+            display: flex;
+            gap: 10px;
+            flex: 0 0 auto;
+        }
+
+        .controls-right {
+            display: flex;
+            gap: 10px;
+            flex: 0 0 auto;
         }
 
         .control-group {
@@ -610,9 +637,21 @@
                 font-size: 1.8em;
             }
 
-            .controls {
+            .controls-top,
+            .controls-bottom {
                 flex-direction: column;
-                gap: 10px;
+                align-items: stretch;
+            }
+
+            .controls-left,
+            .controls-right {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .controls-bottom .control-group {
+                width: 100%;
+                justify-content: center;
             }
 
             .calendar-container {
@@ -680,28 +719,39 @@
         <div class="header">
             <h1>Lịch Vạn Niên Việt Nam</h1>
             <div class="controls">
+                <!-- Top row: Theme (left) and Auth (right) -->
+                <div class="controls-top">
+                    <div class="controls-left">
+                        <div class="control-group">
+                            <button onclick="openCustomThemeModal()">Tùy chỉnh Theme</button>
+                        </div>
+                    </div>
 
-                <div class="control-group">
-                    <button onclick="openCustomThemeModal()">Tùy chỉnh Theme</button>
+                    <div class="controls-right">
+                        <div class="control-group" style="display:flex;align-items:center;gap:.5rem">
+                            <img id="userPhoto" alt="" hidden width="28" height="28" style="border-radius:50%">
+                            <span id="userName" style="opacity:.85">Chưa đăng nhập</span>
+                            <button id="btnSignIn" type="button" onclick="signIn()">Đăng nhập Google</button>
+                            <button id="btnSignOut" type="button" onclick="signOutApp()" hidden>Đăng xuất</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="control-group">
-                    <label for="monthSelect">Tháng:</label>
-                    <select id="monthSelect" aria-label="Chọn tháng"></select>
-                </div>
-                <div class="control-group">
-                    <label for="yearSelect">Năm:</label>
-                    <select id="yearSelect" aria-label="Chọn năm"></select>
-                </div>
-                <div class="control-group">
-                    <button onclick="goToToday()">Hôm nay</button>
-                    <button onclick="prevMonth()">Tháng trước</button>
-                    <button onclick="nextMonth()">Tháng sau</button>
-                </div>
-                <div class="control-group" style="display:flex;align-items:center;gap:.5rem">
-                    <img id="userPhoto" alt="" hidden width="28" height="28" style="border-radius:50%">
-                    <span id="userName" style="opacity:.85">Chưa đăng nhập</span>
-                    <button id="btnSignIn" type="button" onclick="signIn()">Đăng nhập Google</button>
-                    <button id="btnSignOut" type="button" onclick="signOutApp()" hidden>Đăng xuất</button>
+
+                <!-- Bottom row: Calendar navigation (centered) -->
+                <div class="controls-bottom">
+                    <div class="control-group">
+                        <label for="monthSelect">Tháng:</label>
+                        <select id="monthSelect" aria-label="Chọn tháng"></select>
+                    </div>
+                    <div class="control-group">
+                        <label for="yearSelect">Năm:</label>
+                        <select id="yearSelect" aria-label="Chọn năm"></select>
+                    </div>
+                    <div class="control-group">
+                        <button onclick="goToToday()">Hôm nay</button>
+                        <button onclick="prevMonth()">Tháng trước</button>
+                        <button onclick="nextMonth()">Tháng sau</button>
+                    </div>
                 </div>
             </div>
             <div id="authError" class="auth-error" hidden></div>
